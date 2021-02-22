@@ -147,7 +147,9 @@ Event OstimOrgasm(string eventName, string strArg, float numArg, Form sender)
 
 	else 
 		if ostim.ChanceRoll(50)
-			ostim.PlaySound(orgasmer, femaleGasp)
+			if !ostim.MuteOSA
+				ostim.PlaySound(orgasmer, femaleGasp)
+			endif
 		endif
 		if ostim.ChanceRoll(squirtchance)
 			Squirt(orgasmer)
