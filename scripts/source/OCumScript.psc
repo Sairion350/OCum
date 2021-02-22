@@ -140,7 +140,7 @@ Event OstimOrgasm(string eventName, string strArg, float numArg, Form sender)
 
 		CumShoot(orgasmer, cumamount)
 		if (orgasmer == playerref)|| (partner == playerref)
-			ostim.SetOrgasmStall(false)
+			ostim.SetOrgasmStall(false) ;
 			TempDisplayBar()
 		endif
 
