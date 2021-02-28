@@ -29,6 +29,10 @@ armor Squirt1
 armor Squirt2
 armor Squirt3
 
+globalvariable RegenMod
+GlobalVariable DisableInflation
+GlobalVariable DisableCumshot
+
 Event OnInit()
 
 	debug.Notification("OCum installed")
@@ -72,12 +76,29 @@ Event OnInit()
 
 	squirtchance = 25
 
+	RegenMod = game.GetFormFromFile(0x00CE25, "OCum.esp") as GlobalVariable
+	DisableInflation = game.GetFormFromFile(0x00CE26, "OCum.esp") as GlobalVariable
+	DisableCumshot = game.GetFormFromFile(0x00F5C0, "OCum.esp") as GlobalVariable
+	
+
 	ResetQRand()
 	OnLoad()
 
 	;Utility.Wait(5)
 	;TempDisplayBar()
 EndEvent
+
+bool function DisableInflationbool()
+	return (DisableInflation.GetValueInt() as bool)
+Endfunction
+
+bool function DisableCumshotbool()
+	return (DisableCumshot.GetValueInt() as bool)
+Endfunction
+
+float function GetCumRegenRate()
+	return RegenMod.GetValue()
+EndFunction
 
 bool function PlayerIsMale()
 	return !ostim.IsFemale(playerref)
@@ -149,7 +170,7 @@ Event OstimOrgasm(string eventName, string strArg, float numArg, Form sender)
 		if ostim.ChanceRoll(50)
 			if !ostim.MuteOSA
 				ostim.PlaySound(orgasmer, femaleGasp)
-			endif
+			endif 
 		endif
 		if ostim.ChanceRoll(squirtchance)
 			Squirt(orgasmer)
@@ -189,7 +210,9 @@ function AdjustStoredCumAmount(actor npc, float amount)
 			if inflation > 0.6
 				inflation = 0.6
 			EndIf
-			SetBellyScale(npc, inflation)
+			if !DisableInflationbool()
+				SetBellyScale(npc, inflation)
+			endif
 		else 
 			set = max
 		endif
@@ -234,7 +257,7 @@ float function GetCumStoredAmount(actor npc)
 
 		float cumToAdd = timePassed * max
 
-		cum = cum + cumToAdd
+		cum = cum + (cumToAdd * GetCumRegenRate())
 		if cum > max 
 			cum = max 
 		endif 
@@ -327,6 +350,9 @@ endfunction
 
 function CumShoot(actor act, float amountML)
 
+	if DisableCumshotbool()
+		return
+	endif
 	
 	int size = GetLoadSizeFromML(amountml)
 	if size == 0
@@ -340,10 +366,10 @@ function CumShoot(actor act, float amountML)
 	int inaccuracy = 60
 
 	if size == 1
-		Frequency = Utility.RandomFloat(0.8, 1.2)
+		Frequency = Utility.RandomFloat(0.6, 1.0)
 		inaccuracy = 40
 	elseif size == 2
-		Frequency = Utility.RandomFloat(0.3, 0.7)
+		Frequency = Utility.RandomFloat(0.2, 0.5 )
 		inaccuracy = 45
 	elseif size == 3
 		Frequency = Utility.RandomFloat(0.1, 0.3)
