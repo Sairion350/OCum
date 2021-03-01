@@ -316,6 +316,7 @@ endfunction
 
 Function Squirt(actor act)
 	console("Squirting")
+	SendModEvent("ocum_squirt")
 
 	int i = 0 
 	int max = Utility.RandomInt(2, 6)
