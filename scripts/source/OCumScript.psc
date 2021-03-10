@@ -84,7 +84,9 @@ Event OnInit()
 	ResetQRand()
 	OnLoad()
 
-	;Utility.Wait(5)
+	Utility.Wait(5)
+	;CumOnto(playerref, "Oral1")
+	;AdjustStoredCumAmount(playerref, GetMaxCumStoragePossible(playerref) * 2)
 	;TempDisplayBar()
 EndEvent
 
@@ -148,7 +150,6 @@ Event OstimOrgasm(string eventName, string strArg, float numArg, Form sender)
 		endif 
 
 		console("Blowing load size: " + CumAmount + " ML")
-		SendModEvent("ocum_cum", NumArg = CumAmount)
 		AdjustStoredCumAmount(orgasmer, 0 - CumAmount)
 
 
@@ -213,6 +214,9 @@ function AdjustStoredCumAmount(actor npc, float amount)
 			if !DisableInflationbool()
 				SetBellyScale(npc, inflation)
 			endif
+			if (set > (max * 2.1))
+				set = max * 2.1
+			endif
 		else 
 			set = max
 		endif
@@ -236,14 +240,37 @@ float function GetCumStoredAmount(actor npc)
 		else 
 			float cum = GetNPCDataFloat(npc, CumStoredKey)
 
-			;intervaginal sperm will disolve at a rate of 1ml/4hrs (.166 days = 4 hours)
+			;intervaginal sperm will disolve at a rate of 1ml/2hrs (.166 days = 4 hours)
 			float currenttime = Utility.GetCurrentGameTime()
 			float timePassed = currenttime - lastCheckTime
+			console(timePassed)
+			float cumToRemove = (timePassed / 0.083) 
 
-			float cumToRemove = timePassed / 0.166
+			float max = GetMaxCumStoragePossible(npc)
+
+			if cum > max ; cum overflow drains at double speed and gets special math
+				if (cum - cumToRemove) < max ; removing current cum takes you under the limit
+					float overflow = cum - max 
+
+					cumToRemove += (overflow/2) ;halve the overflow and add it to the amount, so the overflow part of the equation drains at double speed
+				elseif (cum - (cumToRemove * 2)) > max ; there is a lot of overflow and we're still going through it
+					cumToRemove *= 2 ; just make it drain at double speed
+				elseif (cum - (cumToRemove * 2)) < max ;doing normal double-drain math takes you under the limit, need to correct
+					float overflow = cum - max 
+
+					float a = (cumToRemove * 2) - overflow ; how far under the max we would go with normal double-drain math, the "underflow"
+					a = a/2 ;halve the underflow since it drains at half speed compared to overflow
+
+					cumToRemove = (cumToRemove * 2) - a ; subtract the underflow here so it normals out
+				endif
+			endif
 
 			cum = cum - cumToRemove
 
+			if cum < 0
+				cum = 0
+			endif
+			
 			StoreNPCDataFloat(npc, CumStoredKey, cum)
 
 			return cum
@@ -350,6 +377,7 @@ function SquirtShoot(actor act)
 endfunction
 
 function CumShoot(actor act, float amountML)
+	SendModEvent("ocum_cum", NumArg = amountML)
 
 	if DisableCumshotbool()
 		return
@@ -500,7 +528,9 @@ function console(string in)
 EndFunction
 
 function TempDisplayBar()
-	cumbar.SetPercent(GetCumStoredAmount(playerref) / GetMaxCumStoragePossible(playerref))
+	float amount = GetCumStoredAmount(playerref)
+	console("Current cum storage for player: " + amount)
+	cumbar.SetPercent(amount / GetMaxCumStoragePossible(playerref))
 	SetBarVisible(cumbar, true)
 	Utility.wait(10)
 	SetBarVisible(cumbar, false)
@@ -707,7 +737,7 @@ function CumOnto(actor act, string TexFilename, bool body = true)
 	endif
 	ReadyOverlay(act, ostim.AppearsFemale(act), area, GetCumTexture(TexFilename))
 	cummedOnActs = PapyrusUtil.PushActor(cummedonacts, act)
-	RegisterForSingleUpdate(300)
+	RegisterForSingleUpdateGameTime(1.66)
 endfunction 
 
 function RemoveCumTex(actor act)
@@ -757,7 +787,7 @@ endfunction
 
 
 actor[] cummedOnActs
-Event OnUpdate()
+Event OnUpdateGameTime()
 	int i 
 	int max = cummedOnActs.Length
 
@@ -777,7 +807,7 @@ function SetBellyScale(actor akActor, float bellyScale)
 	NiOverride.UpdateModelWeight(akActor)
 
 	cummedOnActs = PapyrusUtil.PushActor(cummedonacts, akactor)
-	RegisterForSingleUpdate(300)
+	RegisterForSingleUpdateGameTime(1.66)
 EndFunction
 
 function RemoveBellyScale(actor akActor)
