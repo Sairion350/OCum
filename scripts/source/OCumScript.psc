@@ -747,7 +747,7 @@ int Function CalculateCumPatternFromSkeleton(actor male, actor female)
 
 	float[] Distances = new float[3]
 	Distances[0] = ThreeDeeDistance(maleGenitals, femaleGenitals)
-	Distances[1] = ThreeDeeDistance(maleGenitals, femaleFace) ;- 10 ; this is in the back of the head so make it closer
+	Distances[1] = ThreeDeeDistance(maleGenitals, femaleFace)
 	Distances[2] = ThreeDeeDistance(maleGenitals, femaleAss)
 
 	console(distances as string)
