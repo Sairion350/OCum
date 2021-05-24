@@ -692,9 +692,9 @@ int function GetCumPattern()
 		return 1
 	elseif oclass == "An"
 		return 3
-	elseif (oclass == "ApPJ") || (oclass == "HJ") || (oclass == "BJ") || (oclass == "ApPJ") || (oclass == "ApHJ")|| (oclass == "HhPJ") || (oclass == "HhBJ") || (oclass == "VBJ") || (oclass == "VHJ") || (oclass == "HhPo")
+	elseif (oclass == "ApPJ") || (oclass == "BJ") || (oclass == "ApPJ") || (oclass == "HhPJ") || (oclass == "HhBJ") || (oclass == "VBJ") || (oclass == "HhPo")
 		return 2 
-	elseif (oclass == "Po")
+	elseif (oclass == "Po") || (oclass == "HJ")  || (oclass == "ApHJ") || (oclass == "VHJ") 
 		return CalculateCumPatternFromSkeleton(ostim.GetDomActor(), ostim.GetSubActor())
 	endif
 
