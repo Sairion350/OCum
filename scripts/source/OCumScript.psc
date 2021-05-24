@@ -695,29 +695,64 @@ int function GetCumPattern()
 	elseif (oclass == "ApPJ") || (oclass == "HJ") || (oclass == "BJ") || (oclass == "ApPJ") || (oclass == "ApHJ")|| (oclass == "HhPJ") || (oclass == "HhBJ") || (oclass == "VBJ") || (oclass == "VHJ") || (oclass == "HhPo")
 		return 2 
 	elseif (oclass == "Po")
-		String Pos = ostim.getodatabase().getPositionData(ostim.GetCurrentAnimationOID())
-		string dompos = StringUtil.Split(Pos, "!")[0]
-		string subpos = StringUtil.Split(Pos, "!")[1]
-
-		bool domStanding = ostim.StringContains(dompos, "S")
-		bool subStanding = ostim.StringContains(subpos, "S")
-		bool SubKneeling = ostim.StringContains(subpos, "Kn") || ostim.StringContains(subpos, "C")
-		bool DomKneeling = ostim.StringContains(dompos, "Kn") || ostim.StringContains(dompos, "C")
-		bool subLaying = ostim.StringContains(subpos, "M") || ostim.StringContains(subpos, "PE") || ostim.StringContains(subpos, "D")
-		bool domlaying = ostim.StringContains(dompos, "M") || ostim.StringContains(dompos, "PE") || ostim.StringContains(dompos, "D")
-
-		if (domStanding && subStanding)
-			return 1
-		elseif (SubKneeling && domStanding)
-			return 2
-		elseif (sublaying && domkneeling)
-			return 3
-		elseif (sublaying && domlaying)
-			return 1
-		else 
-			return 2
-		endif
+		return CalculateCumPatternFromSkeleton(ostim.GetDomActor(), ostim.GetSubActor())
 	endif
+
+EndFunction
+
+
+string faceNode = "R Breast04"
+string assNode = "NPC RT Anus2"
+string genitalsNode = "NPC Genitals06 [Gen06]"
+string genitalsFemaleNode = "NPC Genitals02 [Gen02]"
+
+float Function ThreeDeeDistance(float[] pointSet1, float[] pointSet2)
+	return math.sqrt( ((pointset2[0] - pointSet1[0]) * (pointset2[0] - pointSet1[0])) +  ((pointset2[1] - pointSet1[1]) * (pointset2[1] - pointSet1[1])) + ((pointset2[2] - pointSet1[2]) * (pointset2[2] - pointSet1[2])))
+EndFunction
+
+float[] Function GetNodeLocation(actor act, string node)
+	float[] ret = new float[3]
+	NetImmerse.GetNodeWorldPosition(act, node, ret, false)
+	return ret
+EndFunction
+
+int Function GetSmallest(float[] values)
+	int ret
+	Float smallest = 99999999
+
+	int i = 0
+	int max = values.Length
+
+	while i < max 
+		if values[i] < smallest 
+			ret = i 
+			smallest = values[i]
+		endif 
+		i += 1
+	endwhile 
+
+	return ret
+
+EndFunction 
+
+; 1 vaginal
+; 2 oral
+; 3 anal
+int Function CalculateCumPatternFromSkeleton(actor male, actor female)
+	float[] maleGenitals = GetNodeLocation(male, genitalsNode)
+
+	float[] femaleGenitals = GetNodeLocation(female, genitalsFemaleNode)
+	float[] femaleAss = GetNodeLocation(female, assNode)
+	float[] femaleFace = GetNodeLocation(female, faceNode)
+
+	float[] Distances = new float[3]
+	Distances[0] = ThreeDeeDistance(maleGenitals, femaleGenitals)
+	Distances[1] = ThreeDeeDistance(maleGenitals, femaleFace) ;- 10 ; this is in the back of the head so make it closer
+	Distances[2] = ThreeDeeDistance(maleGenitals, femaleAss)
+
+	console(distances as string)
+
+	return GetSmallest(distances) + 1
 
 EndFunction
 
