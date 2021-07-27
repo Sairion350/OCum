@@ -17,6 +17,12 @@ spell cumSpell2
 spell cumSpell3
 spell cumSpell4
 
+spell cleanFacialSpell
+spell facialSpell1
+spell facialSpell2
+spell facialSpell3
+spell facialSpell4
+
 Activator CumLauncher
 
 armor UrethraNode
@@ -59,6 +65,12 @@ Event OnInit()
 	cumSpell2 = game.GetFormFromFile(0x00080f, "OCum.esp") as spell
 	cumSpell3 = game.GetFormFromFile(0x000810, "OCum.esp") as spell
 	cumSpell4 = game.GetFormFromFile(0x000811, "OCum.esp") as spell
+
+	cleanFacialSpell = game.GetFormFromFile(0x011D68, "OCum.esp") as spell
+	facialSpell1 = game.GetFormFromFile(0x00F5C1, "OCum.esp") as spell
+	facialSpell2 = game.GetFormFromFile(0x00F5CB, "OCum.esp") as spell
+	facialSpell3 = game.GetFormFromFile(0x00F5CC, "OCum.esp") as spell
+	facialSpell4 = game.GetFormFromFile(0x00F5CD, "OCum.esp") as spell
 
 	CumLauncher = game.GetFormFromFile(0x000817, "OCum.esp") as Activator
 
@@ -656,6 +668,8 @@ function ApplyCumAsNecessary(actor male, actor sub, float amountML)
 				endif
 			endif 
 
+			Facialize(male, sub, intensity)
+
 			if (intensity == 2) || (intensity == 1)
 				if ostim.ChanceRoll(50)
 					CumOnto(sub, "Oral1")
@@ -775,6 +789,21 @@ function CumOnto(actor act, string TexFilename, bool body = true)
 	RegisterForSingleUpdateGameTime(1.66)
 endfunction 
 
+function Facialize(actor male, actor sub, int intensity)
+	Spell facialSpell
+	if intensity == 1
+		facialSpell = facialSpell1
+	elseif intensity == 2
+		facialSpell = facialSpell2
+	elseif intensity == 3
+		facialSpell = facialSpell3
+	elseif intensity == 4
+		facialSpell = facialSpell4
+	endif
+
+	facialSpell.Cast(male, sub)
+endfunction
+
 function RemoveCumTex(actor act)
 
 	bool Gender = ostim.AppearsFemale(act)
@@ -820,6 +849,9 @@ function RemoveCumTex(actor act)
 	endwhile
 endfunction
 
+Function RemoveFacialCum(actor act)
+	cleanFacialSpell.Cast(act)
+EndFunction
 
 actor[] cummedOnActs
 Event OnUpdateGameTime()
@@ -828,6 +860,7 @@ Event OnUpdateGameTime()
 
 	while i < max 
 		if cummedOnActs[i] != none 
+			RemoveFacialCum(cummedOnActs[i])
 			RemoveCumTex(cummedOnActs[i])
 			RemoveBellyScale(cummedOnActs[i])
 		endif
