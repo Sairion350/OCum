@@ -1,14 +1,50 @@
-ScriptName OCumScript Extends Quest
+ScriptName OCumScript Extends Quest Conditional
 
 ;needs StorageUtils from papyrusutils
-int property CheckCumKey auto
+int property CheckCumKey
+	int Function Get()
+		return StorageUtil.GetIntValue(none, "ocum.key", 157)
+	EndFunction
+
+	Function Set(int val)
+		StorageUtil.SetIntValue(none, "ocum.key", val)
+	EndFunction
+endProperty
+
+Int Property autoCumAction
+	int Function Get()
+		return StorageUtil.GetIntValue(none, "ocum.cumaction", 2)
+	EndFunction
+
+	Function Set(int val)
+		StorageUtil.SetIntValue(none, "ocum.cumaction", val)
+	EndFunction
+endProperty
+
+
+Float Property digestRate ;modifies digestion rate. Intended to be modified by other mods.
+	float Function Get()
+		return StorageUtil.GetFloatValue(none, "ocum.digestRate", 0.0)
+	EndFunction
+
+	Function Set(Float val)
+		StorageUtil.SetFloatValue(none, "ocum.digestRate", val)
+	EndFunction
+endProperty
 
 int property squirtchance auto
+float Property cumSpit Auto
+float Property cumSwallowed Auto
+Bool Property hasBottles Auto Conditional
 OsexIntegrationMain ostim 
 string CumStoredKey
 string LastCumCheckTimeKey
 string MaxCumVolumeKey
 actor playerref
+
+Message cumMessageBox
+Sound swallowing
+Sound spitting
 
 Osexbar CumBar
 
@@ -27,6 +63,9 @@ Activator CumLauncher
 
 armor UrethraNode
 
+string bellyCumTimeCheckedKey
+string maxBellyCumKey
+string bellyCumKey
 sound cumSound 
 sound squirtSound
 sound femaleGasp
@@ -52,8 +91,6 @@ Event OnInit()
 	if ostim.GetAPIVersion() < 7
 		debug.MessageBox("Your ostim version is out of date. update now")
 	endif
-
-	CheckCumKey = 157
 
 	CumStoredKey = "CumStoredAmount"
 	LastCumCheckTimeKey = "CumLastCalcTime"
@@ -83,6 +120,13 @@ Event OnInit()
 	cumSound = game.GetFormFromFile(0x00574D, "OCum.esp") as sound
 	squirtSound = game.GetFormFromFile(0x007EF0, "OCum.esp") as sound
 	femaleGasp = game.GetFormFromFile(0x007EF1, "OCum.esp") as sound
+
+	cumMessageBox = Game.GetFormFromFile(0x014503, "OCum.esp") as Message
+    swallowing = Game.GetFormFromFile(0x014506, "OCum.esp") as Sound
+    spitting = Game.GetFormFromFile(0x014507, "OCum.esp") as Sound
+	maxBellyCumKey = "MaxBellyCumVolume"
+	bellyCumKey = "BellyCumVolume"
+	bellyCumTimeCheckedKey = "bellyCumTimeChecked"
 
 	cummedOnActs = new actor[1]
 
@@ -117,6 +161,11 @@ EndFunction
 bool function PlayerIsMale()
 	return !ostim.IsFemale(playerref)
 EndFunction
+
+Event OStimPreStart(string eventname, string strArg, float numArg, Form sender)
+    console("prestart event received")
+    hasBottles = False
+EndEvent
 
 Event OstimRedressEnd(string eventName, string strArg, float numArg, Form sender)
 	console("OCum Cleaning up armors...")
@@ -170,6 +219,12 @@ Event OstimOrgasm(string eventName, string strArg, float numArg, Form sender)
 			if !malePartner ; give it to female
 				AdjustStoredCumAmount(partner, CumAmount)
 			endif
+		ElseIf (cumAmount > 0 && ostim.IsOral())
+			If (partner == playerref)
+				oralCumAction(CumAmount, partner, orgasmer)
+			else
+				RandomCumAction(CumAmount, partner, orgasmer)
+			EndIf
 		endif
 
 		CumShoot(orgasmer, cumamount)
@@ -305,6 +360,15 @@ float function GetCumStoredAmount(actor npc)
 		return cum
 	endif 
 
+EndFunction
+
+float Function GetBellyCumStorage(actor npc)
+	float bellyCum = GetNPCDataFloat(npc, bellyCumKey)
+	If bellyCum < 0 ;never calculated
+		bellyCum = 0.0
+		StoreNPCDataFloat(npc, bellyCumKey, bellyCum)
+	EndIf
+	return bellyCum
 EndFunction
 
 function StoreNPCDataFloat(actor npc, string keys, Float num) ; don't call this for getting cum stuff, call the function up above.
@@ -476,9 +540,116 @@ function CumShoot(actor act, float amountML)
 
 	caster.delete()
 	target.delete()
-	
-
 endfunction
+
+Function oralCumAction(Float cumAmount, Actor sucker, Actor orgasmer)
+	Int cumAction = -1
+    If autoCumAction == 0 || autoCumAction == 4 && !hasBottles ; If no default option was chosen
+        cumAction = cumMessageBox.Show()
+    EndIf
+
+    If autoCumAction == 0 && cumAction == -1; no action was taken
+        console("no action was taken")
+        return
+	ElseIf autoCumAction == 3 || autoCumAction == 7 && !hasBottles
+		RandomCumAction(cumAmount, sucker, orgasmer)
+    ElseIf (autoCumAction > 3 || cumAction == 2) && hasBottles ; bottle
+        Bottle(cumAmount, sucker, orgasmer)
+    ElseIf cumAction == 0 || autoCumAction == 1 || autoCumAction == 5; spit, or swallow when no bottles
+        Spit(cumAmount, sucker, orgasmer)
+    ElseIf cumAction == 1 || autoCumAction == 2 || autoCumAction == 6; swallow, or swallow when no bottles
+        Swallow(cumAmount, sucker, orgasmer)
+    EndIf
+EndFunction
+
+Function spit(Float cumAmount, Actor sucker, Actor orgasmer)
+	SendModEvent("ocum_spit", numArg = cumAmount)
+    console("Chose to spit")
+    Debug.Notification("You spit out their cum.")
+	If (sucker == playerref)
+    	cumSpit += cumAmount
+	EndIf
+    ostim.PlaySound(sucker, spitting)
+EndFunction
+
+Function Swallow(Float cumAmount, Actor sucker, Actor orgasmer)
+	SendModEvent("ocum_swallow", numArg = cumAmount)
+    console("Chose to swallow")
+    Debug.Notification("You swallow every last drop of their load.")
+	If (sucker == playerref)
+		cumSwallowed += cumAmount
+	EndIf
+	AdjustBelly(cumAmount, sucker)
+    ostim.PlaySound(sucker, swallowing)
+EndFunction
+
+Function Bottle(Float cumAmount, Actor sucker, Actor orgasmer)
+	SendModEvent("ocum_bottle", numArg = cumAmount)
+	console("Chose to bottle")
+EndFunction
+
+Function RandomCumAction(Float cumAmount, Actor sucker, Actor orgasmer)
+	bool option = Utility.RandomInt(0, 1) as bool
+	if option
+		spit(cumAmount, sucker, orgasmer)
+	else
+		Swallow(cumAmount, sucker, orgasmer)
+	endIf
+EndFunction
+
+Float Function getBellyMax(Actor akActor)
+    float max = GetNPCDataFloat(akActor, maxBellyCumKey)
+    if (max != -1)
+        return max 
+    else
+        max = Utility.RandomFloat(15, 56) * 0.75
+        StoreNPCDataFloat(akactor, maxBellyCumKey, max)
+        return max
+    EndIf
+EndFunction
+
+Function AdjustBelly(Float cumAmount, Actor akActor)
+	Float bellyCum = GetBellyCumStorage(akActor)
+	Float timeSinceLastUpdate = GetNPCDataFloat(akActor, bellyCumTimeCheckedKey)
+    console("Adding " + cumAmount + " to belly")
+    console("belly current volume = " + bellyCum)
+
+	Float curTime = Utility.GetCurrentGameTime()
+    If timeSinceLastUpdate >= 0
+        UpdateBelly(curTime - timeSinceLastUpdate, akActor)
+    Else
+        UpdateBelly(0, akActor)
+    EndIf
+    StoreNPCDataFloat(akActor, bellyCumTimeCheckedKey, curTime)
+    float max = getBellyMax(playerref)
+    If (bellyCum + cumAmount > max)
+        bellyCum = max
+        console("cumAmount went over max")
+        console("cumAmount = " + cumAmount)
+        console("bellyCum = " + bellyCum)
+        console("max = " + max)
+    Else
+        bellyCum += cumAmount
+    EndIf
+    console("belly new volume = " + bellyCum)
+	StoreNPCDataFloat(akActor, bellyCumKey, bellyCum)
+EndFunction
+
+;todo - profile this to make sure it isn't laggy as fuck
+Function UpdateBelly(float timePassed, Actor akActor)
+    console("udating belly")
+	Float bellyCum = GetBellyCumStorage(akActor)
+    If (bellyCum > 0)
+        Float digest = timePassed * 24 ; flat starting rate per hr
+        digest = digest * (1 + digestRate / 4 - 1 / (digestRate + 2))
+        If (bellyCum < digest)
+            bellyCum = 0
+        Else
+            bellyCum -= digest
+        EndIf
+    EndIf
+	StoreNPCDataFloat(akActor, bellyCumKey, bellyCum)
+EndFunction
 
 function SetUrethra(actor a)
 ;	bool cam = false
@@ -524,6 +695,7 @@ EndFunction
 
 Event OnKeyDown(Int KeyPress)
 	if KeyPress == CheckCumKey
+		console("bellyCum: " + GetBellyCumStorage(playerref))
 		TempDisplayBar()
 	endif
 EndEvent
@@ -532,6 +704,7 @@ EndEvent
 Function OnLoad()
 	RegisterForModEvent("ostim_orgasm", "OstimOrgasm")
 	RegisterForModEvent("ostim_redresscomplete", "OstimRedressEnd")
+	RegisterForModEvent("ostim_prestart", "OStimPreStart")
 	RegisterForKey(CheckCumKey)
 EndFunction
 
@@ -951,3 +1124,6 @@ EndFunction
 
 ; https://freesound.org/people/Lukeo135/sounds/530617/
 ; https://freesound.org/people/nicklas3799/sounds/467348/
+
+; https://freesound.org/people/RuanZA/sounds/437480/ (Swallowing 1)
+; https://freesound.org/people/bmcken/sounds/118193/ (spitting 1)
