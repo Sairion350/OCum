@@ -137,7 +137,6 @@ Event OnInit()
 	DisableCumshot = game.GetFormFromFile(0x00F5C0, "OCum.esp") as GlobalVariable
 	
 
-	ResetQRand()
 	OnLoad()
 
 	Utility.Wait(5)
@@ -198,7 +197,7 @@ Event OstimOrgasm(string eventName, string strArg, float numArg, Form sender)
 		ostim.PlaySound(orgasmer, cumsound)
 		float CumAmount
 		float MaxStorage = GetMaxCumStoragePossible(orgasmer)
-		float idealMax = (MaxStorage / 2) + (MaxStorage * Utility.RandomFloat(-0.15, 0.15))
+		float idealMax = (MaxStorage / 2) + (MaxStorage * OSANative.RandomFloat(-0.15, 0.15))
 		float currentCum = GetCumStoredAmount(orgasmer)
 
 		actor partner = ostim.GetSexPartner(orgasmer)
@@ -254,7 +253,7 @@ float function GetMaxCumStoragePossible(actor npc)
 		if (max != -1)
 			return max 
 		else 
-			max = Utility.RandomFloat(15, 56)
+			max = OSANative.RandomFloat(15, 56)
 			console("Uterine volume for " + npc.GetDisplayName() + ":" + max)
 			StoreNPCDataFloat(npc, MaxCumVolumeKey, max)
 			return max
@@ -422,7 +421,7 @@ Function Squirt(actor act)
 	SendModEvent("ocum_squirt")
 
 	int i = 0 
-	int max = Utility.RandomInt(2, 6)
+	int max = OSANative.RandomInt(2, 6)
 
 	While i < max 
 		SquirtShoot(act)
@@ -439,7 +438,7 @@ function SquirtShoot(actor act)
 		act.QueueNiNodeUpdate()
 	endif
 
-	Utility.wait(Utility.RandomFloat(0.7, 1.0))
+	Utility.wait(OSANative.RandomFloat(0.7, 1.0))
 
 	bool cam = false
 	if ostim.IsInFreeCam() && (act == playerref)
@@ -471,16 +470,16 @@ function CumShoot(actor act, float amountML)
 	int inaccuracy = 60
 
 	if size == 1
-		Frequency = Utility.RandomFloat(0.6, 1.0)
+		Frequency = OSANative.RandomFloat(0.6, 1.0)
 		inaccuracy = 40
 	elseif size == 2
-		Frequency = Utility.RandomFloat(0.2, 0.5 )
+		Frequency = OSANative.RandomFloat(0.2, 0.5 )
 		inaccuracy = 45
 	elseif size == 3
-		Frequency = Utility.RandomFloat(0.1, 0.3)
+		Frequency = OSANative.RandomFloat(0.1, 0.3)
 		inaccuracy = 55
 	elseif size == 4
-		Frequency = Utility.RandomFloat(0.1, 0.3)
+		Frequency = OSANative.RandomFloat(0.1, 0.3)
 		doubleFireChance = 85
 		tripleFireChance = 30
 		inaccuracy = 60
@@ -503,9 +502,9 @@ function CumShoot(actor act, float amountML)
 	while (i < numSpurts) && ostim.AnimationRunning()
 		
 		;aiming 
-		targetX = uPos[0] + uRM[1] * 200.0 + QRand(0-inaccuracy, inaccuracy)
-		targetY = uPos[1] + uRM[4] * 200.0 + QRand(0-inaccuracy, inaccuracy)
-		targetZ = uPos[2] + uRM[7] * 200.0 + QRand(-10.0, 10.0) - ((i as Float) / (numSpurts as Float) - 0.5) * 180.0  ; later spurts fly lower, and (usually) less distance
+		targetX = uPos[0] + uRM[1] * 200.0 + OSANative.RandomFloat(0-inaccuracy, inaccuracy)
+		targetY = uPos[1] + uRM[4] * 200.0 + OSANative.RandomFloat(0-inaccuracy, inaccuracy)
+		targetZ = uPos[2] + uRM[7] * 200.0 + OSANative.RandomFloat(-10.0, 10.0) - ((i as Float) / (numSpurts as Float) - 0.5) * 180.0  ; later spurts fly lower, and (usually) less distance
 		target.SetPosition(targetX, targetY, targetZ) 
 
 		bool doublefire = ostim.ChanceRoll(doubleFireChance)
@@ -514,21 +513,21 @@ function CumShoot(actor act, float amountML)
 			tripleFire = ostim.ChanceRoll(tripleFireChance)
 		endif
 	
-		FireCumBlast(caster, target, Utility.RandomInt(1, 4), act)
+		FireCumBlast(caster, target, OSANative.RandomInt(1, 4), act)
 		if doublefire
-			targetX = targetX + QRand(0-inaccuracy, inaccuracy)
-			targetY = targetY + QRand(0-inaccuracy, inaccuracy)
+			targetX = targetX + OSANative.RandomFloat(0-inaccuracy, inaccuracy)
+			targetY = targetY + OSANative.RandomFloat(0-inaccuracy, inaccuracy)
 			target.SetPosition(targetX, targetY, targetZ) 
 
-			Utility.Wait(QRand(0.025, 0.075))
-			FireCumBlast(caster, target, Utility.RandomInt(1, 4), act)
+			Utility.Wait(OSANative.RandomFloat(0.025, 0.075))
+			FireCumBlast(caster, target, OSANative.RandomInt(1, 4), act)
 			if tripleFire
-				targetX = targetX + QRand(0-inaccuracy, inaccuracy)
-				targetY = targetY + QRand(0-inaccuracy, inaccuracy)
+				targetX = targetX + OSANative.RandomFloat(0-inaccuracy, inaccuracy)
+				targetY = targetY + OSANative.RandomFloat(0-inaccuracy, inaccuracy)
 				target.SetPosition(targetX, targetY, targetZ) 
 
-				Utility.Wait(QRand(0.025, 0.075))
-				FireCumBlast(caster, target, Utility.RandomInt(1, 4), act)
+				Utility.Wait(OSANative.RandomFloat(0.025, 0.075))
+				FireCumBlast(caster, target, OSANative.RandomInt(1, 4), act)
 			endif
 		endif
 
@@ -589,7 +588,7 @@ Function Bottle(Float cumAmount, Actor sucker, Actor orgasmer)
 EndFunction
 
 Function RandomCumAction(Float cumAmount, Actor sucker, Actor orgasmer)
-	bool option = Utility.RandomInt(0, 1) as bool
+	bool option = OSANative.RandomInt(0, 1) as bool
 	if option
 		spit(cumAmount, sucker, orgasmer)
 	else
@@ -602,7 +601,7 @@ Float Function getBellyMax(Actor akActor)
     if (max != -1)
         return max 
     else
-        max = Utility.RandomFloat(15, 56) * 0.75
+        max = OSANative.RandomFloat(15, 56) * 0.75
         StoreNPCDataFloat(akactor, maxBellyCumKey, max)
         return max
     EndIf
@@ -749,31 +748,7 @@ EndFunction
 
 
 
-; God damn erstam did some crazy shit with cumshot
 
-; A Wichmann-Hill random number generator
-; used to avoid suspending script execution by making external calls to Utility.RandomFloat()
-Float Function QRand(Float min = 0.0, Float max = 1.0)
-	rnd_s1 = (171 * rnd_s1) % 30269
-	rnd_s2 = (172 * rnd_s2) % 30307
-	rnd_s3 = (170 * rnd_s3) % 30323
-	Float r = rnd_s1 / 30269.0 + rnd_s2 / 30367.0 + rnd_s3 / 30323.0
-	r -= (r as Int)
-	Return  r * (max - min) + min
-EndFunction
-
-
-; Set initial seed values for the RNG. Can also be called from MCM if generation gets stuck on always the same values.
-Function ResetQRand()
-	Int realTimeMod = (Utility.GetCurrentRealTime() as Int) + (utility.randomint(1, 150)) % 1000
-	rnd_s1 = 13254 + realTimeMod
-	rnd_s2 = 4931 + realTimeMod
-	rnd_s3 = 24178 + realTimeMod
-EndFunction
-
-int rnd_s1
-int rnd_s2
-int rnd_s3
 
 
 
@@ -1071,7 +1046,7 @@ EndFunction
 
 Function ApplyOverlay(Actor akTarget, Bool Gender, String Area, String OverlaySlot, String TextureToApply)
 	;Float Alpha = GetCumSetAlpha(CumSet)
-	float alpha = Utility.RandomFloat(0.75, 1.0)
+	float alpha = OSANative.RandomFloat(0.75, 1.0)
 
 	NiOverride.AddOverlays(akTarget)
 	String Node = Area + " [ovl" + OverlaySlot + "]"
