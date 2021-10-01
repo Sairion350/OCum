@@ -2,3 +2,4 @@ meta.ini
 *.zip
 *.ppj
 *.pex
+.gitignore
