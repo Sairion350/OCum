@@ -988,7 +988,7 @@ function RemoveCumTex(actor act)
 
 		string tex = NiOverride.GetNodeOverrideString(act, Gender, Node, 9, 0)
 
-		If ostim.StringContains(tex, "Cum")
+		If outils.StringContains(tex, "Cum")
 			NiOverride.AddNodeOverrideString(act, Gender, Node, 9, 0, "actors\\character\\overlays\\default.dds", false)
 			NiOverride.RemoveNodeOverride(act, Gender, node , 9, 0)
 			NiOverride.RemoveNodeOverride(act, Gender, Node, 7, -1)
