@@ -21,7 +21,7 @@ jobs:
       # Set these
       dist-path: '..\dist\'                               # Folder containing the output from the project files
       compiler-repo: Osmosis-Wrench/JContainers-Compiler-Only   # Github repository containing the papyrus compiler
-      compiler-token: ${{ OCUM_TOKEN.token }} # Just use ${{ github.token }} if the repo is not private
+      compiler-token: ${{ OCUM_TOKEN }} # Just use ${{ github.token }} if the repo is not private
       # Ignore these
       python-version: 3.x
       python-arch: x64
