@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    # Set the push branches
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+      # Set the project file paths relative to the current repo
+        project-path:
+        - 'ocum.ppj'
+        
+    env:
+      # Set these
+      dist-path: '..\dist\'                               # Folder containing the output from the project files
+      compiler-repo: Osmosis-Wrench/JContainers-Compiler-Only   # Github repository containing the papyrus compiler
+      compiler-token: ${{ github.token }} # Just use ${{ github.token }} if the repo is not private
+      # Ignore these
+      python-version: 3.x
+      python-arch: x64
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        path: ./repo
+
+    - name: Set up Python ${{ env.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ env.python-version }}
+        architecture:  ${{ env.python-arch }}
+
+    - name: Pull papyrus compiler
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ env.compiler-repo }}
+        token: ${{ env.compiler-token }}
+        path: ./compiler
+
+    - name: Get latest Pyro release
+      id: pyro_asset
+      uses: MrOctopus/download-asset-action@main
+      with:
+        repository: fireundubh/pyro
+        excludes: draft
+        asset: pyro
+
+    - name: Extract Pyro
+      run: 7z x ${Env:release_name} -opyro
+      env: 
+        release_name: ${{ steps.pyro_asset.outputs.name }}
+
+    - name: Build releases
+      run: |
+        .\pyro\pyro --game-path . --compiler-path ${Env:ppj_c} --flags-path ${Env:ppj_f} --access-token ${Env:ppj_t} .\repo\${Env:ppj_p}
+      env: 
+        ppj_c: compiler\PapyrusCompiler.exe
+        ppj_f: compiler\TESV_Papyrus_Flags.flg
+        ppj_t: ${{ github.token }}
+        ppj_p: ${{ matrix.project-path }}
+
+    - name: Prepare upload
+      if: success()
+      run: |
+        cd repo\${Env:dist-path}
+        7z x *zip -o*
+        echo "build_paths=$($(Get-ChildItem -Filter *.zip | % { join-path $_.DirectoryName $_.BaseName  }) -join ",")" >> ${Env:GITHUB_ENV}
+    
+    - name: Upload release
+      if: success()
+      uses: MrOctopus/upload-artifact@main
+      with:
+        individual: true
+        path: ${{ env.build_paths }}
