@@ -880,7 +880,7 @@ EndFunction
 
 int Function GetSmallest(float[] values)
 	int ret
-	Float smallest = 99999999
+	Float smallest = 9999999
 
 	int i = 0
 	int max = values.Length
