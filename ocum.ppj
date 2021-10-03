@@ -17,7 +17,7 @@
         <Import>https://github.com/eeveelo/PapyrusUtil/tree/master/Scripts/Source</Import>
         <Import>https://github.com/Sairion350/OStim/tree/main/Scripts/Source</Import>
         <Import>https://github.com/CE0/OSA-SE/tree/master/Data/Scripts/Source</Import>
-        <Import>https://github.com/Osmosis-Wrench/random-loose-scripts/tree/main/scripts/source</Import>
+        <Import>https://github.com/Osmosis-Wrench/racemenu-scripts/tree/main/scripts/source</Import>
         <Import>https://github.com/MrOctopus/nl_online/tree/main/skyui/source</Import>
         <Import>https://github.com/MrOctopus/nl_online/tree/main/skse64/source</Import>
         <Import>https://github.com/MrOctopus/nl_online/tree/main/sse/source</Import>
