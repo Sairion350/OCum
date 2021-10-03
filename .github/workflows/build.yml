@@ -6,6 +6,7 @@ on:
     # Set the push branches
     branches:
       - main
+      - dev
 
 jobs:
   build:
