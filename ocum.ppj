@@ -8,6 +8,7 @@
     Zip="true">
     <Variables>
         <Variable Name="ModName" Value="OCum"/>
+        <Variable Name="Version" Value="1.4"/>
         <Variable Name="MyProject" Value="."/>
         <Variable Name="Dist" Value="..\dist"/>
     </Variables>
@@ -26,7 +27,7 @@
         <Folder>@MyProject\Scripts\Source</Folder>
     </Folders>
     <ZipFiles Output="@Dist">
-        <ZipFile Name="@ModName" RootDir="@MyProject" Compression="deflate">
+        <ZipFile Name="@ModName - @Version" RootDir="@MyProject" Compression="deflate">
         	<Include NoRecurse="true">*.esp</Include>
             <Include>Scripts</Include>
             <Include>Meshes</Include>
