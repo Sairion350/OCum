@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SliderSetInfo version="1">
+    <SliderSet name="semen02">
+        <DataFolder>semen02</DataFolder>
+        <SourceFile>semen02.nif</SourceFile>
+        <OutputPath>Meshes\Kziitd\cloth</OutputPath>
+        <OutputFile GenWeights="true">semen02</OutputFile>
+        <Shape target="jy2">jy2</Shape>
+        <Shape target="jyb">jyb</Shape>
+        <Slider name="Breasts" invert="true" small="100" big="100">
+            <Data name="jy2Breasts" target="jy2" local="true">semen02.osd\jy2Breasts</Data>
+        </Slider>
+        <Slider name="BreastsSmall" invert="true" small="100" big="100">
+            <Data name="jy2BreastsSmall" target="jy2" local="true">semen02.osd\jy2BreastsSmall</Data>
+        </Slider>
+        <Slider name="BreastsSH" invert="false" small="0" big="0">
+            <Data name="jy2BreastsSH" target="jy2" local="true">semen02.osd\jy2BreastsSH</Data>
+        </Slider>
+        <Slider name="BreastsSSH" invert="false" small="0" big="0">
+            <Data name="jy2BreastsSSH" target="jy2" local="true">semen02.osd\jy2BreastsSSH</Data>
+        </Slider>
+        <Slider name="BreastsFantasy" invert="false" small="0" big="0">
+            <Data name="jy2BreastsFantasy" target="jy2" local="true">semen02.osd\jy2BreastsFantasy</Data>
+        </Slider>
+        <Slider name="DoubleMelon" invert="false" small="0" big="0">
+            <Data name="jy2DoubleMelon" target="jy2" local="true">semen02.osd\jy2DoubleMelon</Data>
+        </Slider>
+        <Slider name="BreastCleavage" invert="false" small="0" big="0">
+            <Data name="jy2BreastCleavage" target="jy2" local="true">semen02.osd\jy2BreastCleavage</Data>
+        </Slider>
+        <Slider name="BreastFlatness" invert="false" small="0" big="0">
+            <Data name="jy2BreastFlatness" target="jy2" local="true">semen02.osd\jy2BreastFlatness</Data>
+        </Slider>
+        <Slider name="BreastGravity" invert="false" small="0" big="0">
+            <Data name="jy2BreastGravity" target="jy2" local="true">semen02.osd\jy2BreastGravity</Data>
+        </Slider>
+        <Slider name="PushUp" invert="false" small="0" big="0">
+            <Data name="jy2PushUp" target="jy2" local="true">semen02.osd\jy2PushUp</Data>
+        </Slider>
+        <Slider name="BreastHeight" invert="false" small="0" big="0">
+            <Data name="jy2BreastHeight" target="jy2" local="true">semen02.osd\jy2BreastHeight</Data>
+        </Slider>
+        <Slider name="BreastPerkiness" invert="false" small="0" big="0">
+            <Data name="jy2BreastPerkiness" target="jy2" local="true">semen02.osd\jy2BreastPerkiness</Data>
+        </Slider>
+        <Slider name="BreastWidth" invert="false" small="0" big="0">
+            <Data name="jy2BreastWidth" target="jy2" local="true">semen02.osd\jy2BreastWidth</Data>
+        </Slider>
+        <Slider name="NippleDistance" invert="true" small="100" big="100">
+            <Data name="jy2NippleDistance" target="jy2" local="true">semen02.osd\jy2NippleDistance</Data>
+        </Slider>
+        <Slider name="NipplePerkiness" invert="false" small="0" big="0">
+            <Data name="jy2NipplePerkiness" target="jy2" local="true">semen02.osd\jy2NipplePerkiness</Data>
+        </Slider>
+        <Slider name="NippleLength" invert="false" small="0" big="0">
+            <Data name="jy2NippleLength" target="jy2" local="true">semen02.osd\jy2NippleLength</Data>
+        </Slider>
+        <Slider name="NippleSize" invert="true" small="100" big="100">
+            <Data name="jy2NippleSize" target="jy2" local="true">semen02.osd\jy2NippleSize</Data>
+        </Slider>
+        <Slider name="NippleAreola" invert="false" small="0" big="0">
+            <Data name="jy2NippleAreola" target="jy2" local="true">semen02.osd\jy2NippleAreola</Data>
+        </Slider>
+        <Slider name="NippleUp" invert="false" small="0" big="0">
+            <Data name="jy2NippleUp" target="jy2" local="true">semen02.osd\jy2NippleUp</Data>
+        </Slider>
+        <Slider name="NippleDown" invert="false" small="0" big="0">
+            <Data name="jy2NippleDown" target="jy2" local="true">semen02.osd\jy2NippleDown</Data>
+        </Slider>
+        <Slider name="NippleTip" invert="false" small="0" big="0">
+            <Data name="jy2NippleTip" target="jy2" local="true">semen02.osd\jy2NippleTip</Data>
+        </Slider>
+        <Slider name="Arms" invert="true" small="100" big="100">
+            <Data name="jy2Arms" target="jy2" local="true">semen02.osd\jy2Arms</Data>
+        </Slider>
+        <Slider name="ChubbyArms" invert="false" small="0" big="0">
+            <Data name="jy2ChubbyArms" target="jy2" local="true">semen02.osd\jy2ChubbyArms</Data>
+        </Slider>
+        <Slider name="ShoulderSmooth" invert="false" small="0" big="0">
+            <Data name="jy2ShoulderSmooth" target="jy2" local="true">semen02.osd\jy2ShoulderSmooth</Data>
+        </Slider>
+        <Slider name="ShoulderWidth" invert="true" small="100" big="100">
+            <Data name="jy2ShoulderWidth" target="jy2" local="true">semen02.osd\jy2ShoulderWidth</Data>
+        </Slider>
+        <Slider name="BigTorso" invert="false" small="0" big="0">
+            <Data name="jy2BigTorso" target="jy2" local="true">semen02.osd\jy2BigTorso</Data>
+        </Slider>
+        <Slider name="Waist" invert="false" small="0" big="0">
+            <Data name="jy2Waist" target="jy2" local="true">semen02.osd\jy2Waist</Data>
+        </Slider>
+        <Slider name="WideWaistLine" invert="false" small="0" big="0">
+            <Data name="jy2WideWaistLine" target="jy2" local="true">semen02.osd\jy2WideWaistLine</Data>
+        </Slider>
+        <Slider name="ChubbyWaist" invert="false" small="0" big="0">
+            <Data name="jy2ChubbyWaist" target="jy2" local="true">semen02.osd\jy2ChubbyWaist</Data>
+        </Slider>
+        <Slider name="Belly" invert="false" small="0" big="0">
+            <Data name="jy2Belly" target="jy2" local="true">semen02.osd\jy2Belly</Data>
+        </Slider>
+        <Slider name="BigBelly" invert="false" small="0" big="0">
+            <Data name="jy2BigBelly" target="jy2" local="true">semen02.osd\jy2BigBelly</Data>
+        </Slider>
+        <Slider name="PregnancyBelly" invert="false" small="0" big="0">
+            <Data name="jy2PregnancyBelly" target="jy2" local="true">semen02.osd\jy2PregnancyBelly</Data>
+            <Data name="jybPregnancyBelly" target="jyb" local="true">semen02.osd\jybPregnancyBelly</Data>
+        </Slider>
+        <Slider name="TummyTuck" invert="false" small="0" big="0">
+            <Data name="jy2TummyTuck" target="jy2" local="true">semen02.osd\jy2TummyTuck</Data>
+            <Data name="jybTummyTuck" target="jyb" local="true">semen02.osd\jybTummyTuck</Data>
+        </Slider>
+        <Slider name="Back" invert="false" small="0" big="0">
+            <Data name="jy2Back" target="jy2" local="true">semen02.osd\jy2Back</Data>
+        </Slider>
+        <Slider name="Hipbone" invert="false" small="0" big="0">
+            <Data name="jy2Hipbone" target="jy2" local="true">semen02.osd\jy2Hipbone</Data>
+        </Slider>
+        <Slider name="Hips" invert="false" small="0" big="0">
+            <Data name="jy2Hips" target="jy2" local="true">semen02.osd\jy2Hips</Data>
+            <Data name="jybHips" target="jyb" local="true">semen02.osd\jybHips</Data>
+        </Slider>
+        <Slider name="ButtCrack" invert="true" small="100" big="100">
+            <Data name="jy2ButtCrack" target="jy2" local="true">semen02.osd\jy2ButtCrack</Data>
+            <Data name="jybButtCrack" target="jyb" local="true">semen02.osd\jybButtCrack</Data>
+        </Slider>
+        <Slider name="Butt" invert="true" small="100" big="100">
+            <Data name="jy2Butt" target="jy2" local="true">semen02.osd\jy2Butt</Data>
+            <Data name="jybButt" target="jyb" local="true">semen02.osd\jybButt</Data>
+        </Slider>
+        <Slider name="ButtSmall" invert="true" small="100" big="100">
+            <Data name="jy2ButtSmall" target="jy2" local="true">semen02.osd\jy2ButtSmall</Data>
+            <Data name="jybButtSmall" target="jyb" local="true">semen02.osd\jybButtSmall</Data>
+        </Slider>
+        <Slider name="ButtShape2" invert="false" small="0" big="0">
+            <Data name="jy2ButtShape2" target="jy2" local="true">semen02.osd\jy2ButtShape2</Data>
+            <Data name="jybButtShape2" target="jyb" local="true">semen02.osd\jybButtShape2</Data>
+        </Slider>
+        <Slider name="BigButt" invert="false" small="0" big="0">
+            <Data name="jy2BigButt" target="jy2" local="true">semen02.osd\jy2BigButt</Data>
+            <Data name="jybBigButt" target="jyb" local="true">semen02.osd\jybBigButt</Data>
+        </Slider>
+        <Slider name="ChubbyButt" invert="false" small="0" big="0">
+            <Data name="jy2ChubbyButt" target="jy2" local="true">semen02.osd\jy2ChubbyButt</Data>
+            <Data name="jybChubbyButt" target="jyb" local="true">semen02.osd\jybChubbyButt</Data>
+        </Slider>
+        <Slider name="AppleCheeks" invert="false" small="0" big="0">
+            <Data name="jy2AppleCheeks" target="jy2" local="true">semen02.osd\jy2AppleCheeks</Data>
+            <Data name="jybAppleCheeks" target="jyb" local="true">semen02.osd\jybAppleCheeks</Data>
+        </Slider>
+        <Slider name="RoundAss" invert="false" small="0" big="0">
+            <Data name="jy2RoundAss" target="jy2" local="true">semen02.osd\jy2RoundAss</Data>
+            <Data name="jybRoundAss" target="jyb" local="true">semen02.osd\jybRoundAss</Data>
+        </Slider>
+        <Slider name="SlimThighs" invert="false" small="0" big="0">
+            <Data name="jy2SlimThighs" target="jy2" local="true">semen02.osd\jy2SlimThighs</Data>
+            <Data name="jybSlimThighs" target="jyb" local="true">semen02.osd\jybSlimThighs</Data>
+        </Slider>
+        <Slider name="Thighs" invert="false" small="0" big="0">
+            <Data name="jy2Thighs" target="jy2" local="true">semen02.osd\jy2Thighs</Data>
+            <Data name="jybThighs" target="jyb" local="true">semen02.osd\jybThighs</Data>
+        </Slider>
+        <Slider name="ChubbyLegs" invert="false" small="0" big="0">
+            <Data name="jy2ChubbyLegs" target="jy2" local="true">semen02.osd\jy2ChubbyLegs</Data>
+            <Data name="jybChubbyLegs" target="jyb" local="true">semen02.osd\jybChubbyLegs</Data>
+        </Slider>
+        <Slider name="Legs" invert="true" small="100" big="100">
+            <Data name="jy2Legs" target="jy2" local="true">semen02.osd\jy2Legs</Data>
+            <Data name="jybLegs" target="jyb" local="true">semen02.osd\jybLegs</Data>
+        </Slider>
+        <Slider name="KneeHeight" invert="false" small="0" big="0">
+            <Data name="jy2KneeHeight" target="jy2" local="true">semen02.osd\jy2KneeHeight</Data>
+            <Data name="jybKneeHeight" target="jyb" local="true">semen02.osd\jybKneeHeight</Data>
+        </Slider>
+        <Slider name="Neck" invert="false" small="100" big="0" hidden="true">
+            <Data name="jy2Neck" target="jy2" local="true">semen02.osd\jy2Neck</Data>
+        </Slider>
+        <Slider name="7B Low" invert="false" small="0" big="0">
+            <Data name="jy27B Low" target="jy2" local="true">semen02.osd\jy27B Low</Data>
+            <Data name="jyb7B Low" target="jyb" local="true">semen02.osd\jyb7B Low</Data>
+        </Slider>
+        <Slider name="7B High" invert="false" small="0" big="0">
+            <Data name="jy27B High" target="jy2" local="true">semen02.osd\jy27B High</Data>
+            <Data name="jyb7B High" target="jyb" local="true">semen02.osd\jyb7B High</Data>
+        </Slider>
+        <Slider name="7B Bombshell Low" invert="false" small="0" big="0">
+            <Data name="jy27B Bombshell Low" target="jy2" local="true">semen02.osd\jy27B Bombshell Low</Data>
+            <Data name="jyb7B Bombshell Low" target="jyb" local="true">semen02.osd\jyb7B Bombshell Low</Data>
+        </Slider>
+        <Slider name="7B Bombshell High" invert="false" small="0" big="0">
+            <Data name="jy27B Bombshell High" target="jy2" local="true">semen02.osd\jy27B Bombshell High</Data>
+            <Data name="jyb7B Bombshell High" target="jyb" local="true">semen02.osd\jyb7B Bombshell High</Data>
+        </Slider>
+        <Slider name="7B Natural Low" invert="false" small="0" big="0">
+            <Data name="jy27B Natural Low" target="jy2" local="true">semen02.osd\jy27B Natural Low</Data>
+            <Data name="jyb7B Natural Low" target="jyb" local="true">semen02.osd\jyb7B Natural Low</Data>
+        </Slider>
+        <Slider name="7B Natural High" invert="false" small="0" big="0">
+            <Data name="jy27B Natural High" target="jy2" local="true">semen02.osd\jy27B Natural High</Data>
+            <Data name="jyb7B Natural High" target="jyb" local="true">semen02.osd\jyb7B Natural High</Data>
+        </Slider>
+        <Slider name="7B Cleavage Low" invert="false" small="0" big="0">
+            <Data name="jy27B Cleavage Low" target="jy2" local="true">semen02.osd\jy27B Cleavage Low</Data>
+            <Data name="jyb7B Cleavage Low" target="jyb" local="true">semen02.osd\jyb7B Cleavage Low</Data>
+        </Slider>
+        <Slider name="7B Cleavage High" invert="false" small="0" big="0">
+            <Data name="jy27B Cleavage High" target="jy2" local="true">semen02.osd\jy27B Cleavage High</Data>
+            <Data name="jyb7B Cleavage High" target="jyb" local="true">semen02.osd\jyb7B Cleavage High</Data>
+        </Slider>
+        <Slider name="7B BCup Low" invert="false" small="0" big="0">
+            <Data name="jy27B BCup Low" target="jy2" local="true">semen02.osd\jy27B BCup Low</Data>
+            <Data name="jyb7B BCup Low" target="jyb" local="true">semen02.osd\jyb7B BCup Low</Data>
+        </Slider>
+        <Slider name="7B BCup High" invert="false" small="0" big="0">
+            <Data name="jy27B BCup High" target="jy2" local="true">semen02.osd\jy27B BCup High</Data>
+            <Data name="jyb7B BCup High" target="jyb" local="true">semen02.osd\jyb7B BCup High</Data>
+        </Slider>
+        <Slider name="7BUNP Low" invert="false" small="0" big="0">
+            <Data name="jy27BUNP Low" target="jy2" local="true">semen02.osd\jy27BUNP Low</Data>
+            <Data name="jyb7BUNP Low" target="jyb" local="true">semen02.osd\jyb7BUNP Low</Data>
+        </Slider>
+        <Slider name="7BUNP High" invert="false" small="0" big="0">
+            <Data name="jy27BUNP High" target="jy2" local="true">semen02.osd\jy27BUNP High</Data>
+            <Data name="jyb7BUNP High" target="jyb" local="true">semen02.osd\jyb7BUNP High</Data>
+        </Slider>
+        <Slider name="7B Oppai Low" invert="false" small="0" big="0">
+            <Data name="jy27B Oppai Low" target="jy2" local="true">semen02.osd\jy27B Oppai Low</Data>
+            <Data name="jyb7B Oppai Low" target="jyb" local="true">semen02.osd\jyb7B Oppai Low</Data>
+        </Slider>
+        <Slider name="7B Oppai High" invert="false" small="0" big="0">
+            <Data name="jy27B Oppai High" target="jy2" local="true">semen02.osd\jy27B Oppai High</Data>
+            <Data name="jyb7B Oppai High" target="jyb" local="true">semen02.osd\jyb7B Oppai High</Data>
+        </Slider>
+        <Slider name="7B CH Low" invert="false" small="0" big="0">
+            <Data name="jy27B CH Low" target="jy2" local="true">semen02.osd\jy27B CH Low</Data>
+            <Data name="jyb7B CH Low" target="jyb" local="true">semen02.osd\jyb7B CH Low</Data>
+        </Slider>
+        <Slider name="7B CH High" invert="false" small="0" big="0">
+            <Data name="jy27B CH High" target="jy2" local="true">semen02.osd\jy27B CH High</Data>
+            <Data name="jyb7B CH High" target="jyb" local="true">semen02.osd\jyb7B CH High</Data>
+        </Slider>
+        <Slider name="UNP Low" invert="false" small="0" big="0">
+            <Data name="jy2UNP Low" target="jy2" local="true">semen02.osd\jy2UNP Low</Data>
+            <Data name="jybUNP Low" target="jyb" local="true">semen02.osd\jybUNP Low</Data>
+        </Slider>
+        <Slider name="UNP High" invert="false" small="0" big="0">
+            <Data name="jy2UNP High" target="jy2" local="true">semen02.osd\jy2UNP High</Data>
+            <Data name="jybUNP High" target="jyb" local="true">semen02.osd\jybUNP High</Data>
+        </Slider>
+        <Slider name="UNP Pushup Low" invert="false" small="0" big="0">
+            <Data name="jy2UNP Pushup Low" target="jy2" local="true">semen02.osd\jy2UNP Pushup Low</Data>
+            <Data name="jybUNP Pushup Low" target="jyb" local="true">semen02.osd\jybUNP Pushup Low</Data>
+        </Slider>
+        <Slider name="UNP Pushup High" invert="false" small="0" big="0">
+            <Data name="jy2UNP Pushup High" target="jy2" local="true">semen02.osd\jy2UNP Pushup High</Data>
+            <Data name="jybUNP Pushup High" target="jyb" local="true">semen02.osd\jybUNP Pushup High</Data>
+        </Slider>
+        <Slider name="UNP Skinny Low" invert="false" small="0" big="0">
+            <Data name="jy2UNP Skinny Low" target="jy2" local="true">semen02.osd\jy2UNP Skinny Low</Data>
+            <Data name="jybUNP Skinny Low" target="jyb" local="true">semen02.osd\jybUNP Skinny Low</Data>
+        </Slider>
+        <Slider name="UNP Skinny High" invert="false" small="0" big="0">
+            <Data name="jy2UNP Skinny High" target="jy2" local="true">semen02.osd\jy2UNP Skinny High</Data>
+            <Data name="jybUNP Skinny High" target="jyb" local="true">semen02.osd\jybUNP Skinny High</Data>
+        </Slider>
+        <Slider name="UNP Perky Low" invert="false" small="0" big="0">
+            <Data name="jy2UNP Perky Low" target="jy2" local="true">semen02.osd\jy2UNP Perky Low</Data>
+            <Data name="jybUNP Perky Low" target="jyb" local="true">semen02.osd\jybUNP Perky Low</Data>
+        </Slider>
+        <Slider name="UNP Perky High" invert="false" small="0" big="0">
+            <Data name="jy2UNP Perky High" target="jy2" local="true">semen02.osd\jy2UNP Perky High</Data>
+            <Data name="jybUNP Perky High" target="jyb" local="true">semen02.osd\jybUNP Perky High</Data>
+        </Slider>
+        <Slider name="UNPB Low" invert="false" small="0" big="0">
+            <Data name="jy2UNPB Low" target="jy2" local="true">semen02.osd\jy2UNPB Low</Data>
+            <Data name="jybUNPB Low" target="jyb" local="true">semen02.osd\jybUNPB Low</Data>
+        </Slider>
+        <Slider name="UNPB High" invert="false" small="0" big="0">
+            <Data name="jy2UNPB High" target="jy2" local="true">semen02.osd\jy2UNPB High</Data>
+            <Data name="jybUNPB High" target="jyb" local="true">semen02.osd\jybUNPB High</Data>
+        </Slider>
+        <Slider name="UNPB Chapi" invert="false" small="0" big="0">
+            <Data name="jy2UNPB Chapi" target="jy2" local="true">semen02.osd\jy2UNPB Chapi</Data>
+            <Data name="jybUNPB Chapi" target="jyb" local="true">semen02.osd\jybUNPB Chapi</Data>
+        </Slider>
+        <Slider name="UNPB Oppai v1" invert="false" small="0" big="0">
+            <Data name="jy2UNPB Oppai v1" target="jy2" local="true">semen02.osd\jy2UNPB Oppai v1</Data>
+            <Data name="jybUNPB Oppai v1" target="jyb" local="true">semen02.osd\jybUNPB Oppai v1</Data>
+        </Slider>
+        <Slider name="UNPB Oppai v3.2 Low" invert="false" small="0" big="0">
+            <Data name="jy2UNPB Oppai v3.2 Low" target="jy2" local="true">semen02.osd\jy2UNPB Oppai v3.2 Low</Data>
+            <Data name="jybUNPB Oppai v3.2 Low" target="jyb" local="true">semen02.osd\jybUNPB Oppai v3.2 Low</Data>
+        </Slider>
+        <Slider name="UNPB Oppai v3.2 High" invert="false" small="0" big="0">
+            <Data name="jy2UNPB Oppai v3.2 High" target="jy2" local="true">semen02.osd\jy2UNPB Oppai v3.2 High</Data>
+            <Data name="jybUNPB Oppai v3.2 High" target="jyb" local="true">semen02.osd\jybUNPB Oppai v3.2 High</Data>
+        </Slider>
+        <Slider name="UNPetite Low" invert="false" small="0" big="0">
+            <Data name="jy2UNPetite Low" target="jy2" local="true">semen02.osd\jy2UNPetite Low</Data>
+            <Data name="jybUNPetite Low" target="jyb" local="true">semen02.osd\jybUNPetite Low</Data>
+        </Slider>
+        <Slider name="UNPetite High" invert="false" small="0" big="0">
+            <Data name="jy2UNPetite High" target="jy2" local="true">semen02.osd\jy2UNPetite High</Data>
+            <Data name="jybUNPetite High" target="jyb" local="true">semen02.osd\jybUNPetite High</Data>
+        </Slider>
+        <Slider name="UNPC Low" invert="false" small="0" big="0">
+            <Data name="jy2UNPC Low" target="jy2" local="true">semen02.osd\jy2UNPC Low</Data>
+            <Data name="jybUNPC Low" target="jyb" local="true">semen02.osd\jybUNPC Low</Data>
+        </Slider>
+        <Slider name="UNPC High" invert="false" small="0" big="0">
+            <Data name="jy2UNPC High" target="jy2" local="true">semen02.osd\jy2UNPC High</Data>
+            <Data name="jybUNPC High" target="jyb" local="true">semen02.osd\jybUNPC High</Data>
+        </Slider>
+        <Slider name="UNPCM Low" invert="false" small="0" big="0">
+            <Data name="jy2UNPCM Low" target="jy2" local="true">semen02.osd\jy2UNPCM Low</Data>
+            <Data name="jybUNPCM Low" target="jyb" local="true">semen02.osd\jybUNPCM Low</Data>
+        </Slider>
+        <Slider name="UNPCM High" invert="false" small="0" big="0">
+            <Data name="jy2UNPCM High" target="jy2" local="true">semen02.osd\jy2UNPCM High</Data>
+            <Data name="jybUNPCM High" target="jyb" local="true">semen02.osd\jybUNPCM High</Data>
+        </Slider>
+        <Slider name="UNPSH Low" invert="false" small="0" big="0">
+            <Data name="jy2UNPSH Low" target="jy2" local="true">semen02.osd\jy2UNPSH Low</Data>
+            <Data name="jybUNPSH Low" target="jyb" local="true">semen02.osd\jybUNPSH Low</Data>
+        </Slider>
+        <Slider name="UNPSH High" invert="false" small="0" big="0">
+            <Data name="jy2UNPSH High" target="jy2" local="true">semen02.osd\jy2UNPSH High</Data>
+            <Data name="jybUNPSH High" target="jyb" local="true">semen02.osd\jybUNPSH High</Data>
+        </Slider>
+        <Slider name="UNPK Low" invert="false" small="0" big="0">
+            <Data name="jy2UNPK Low" target="jy2" local="true">semen02.osd\jy2UNPK Low</Data>
+            <Data name="jybUNPK Low" target="jyb" local="true">semen02.osd\jybUNPK Low</Data>
+        </Slider>
+        <Slider name="UNPK High" invert="false" small="0" big="0">
+            <Data name="jy2UNPK High" target="jy2" local="true">semen02.osd\jy2UNPK High</Data>
+            <Data name="jybUNPK High" target="jyb" local="true">semen02.osd\jybUNPK High</Data>
+        </Slider>
+        <Slider name="UNPK Bonus Low" invert="false" small="0" big="0">
+            <Data name="jy2UNPK Bonus Low" target="jy2" local="true">semen02.osd\jy2UNPK Bonus Low</Data>
+            <Data name="jybUNPK Bonus Low" target="jyb" local="true">semen02.osd\jybUNPK Bonus Low</Data>
+        </Slider>
+        <Slider name="UNPK Bonus High" invert="false" small="0" big="0">
+            <Data name="jy2UNPK Bonus High" target="jy2" local="true">semen02.osd\jy2UNPK Bonus High</Data>
+            <Data name="jybUNPK Bonus High" target="jyb" local="true">semen02.osd\jybUNPK Bonus High</Data>
+        </Slider>
+        <Slider name="UN7B Low" invert="false" small="0" big="0">
+            <Data name="jy2UN7B Low" target="jy2" local="true">semen02.osd\jy2UN7B Low</Data>
+            <Data name="jybUN7B Low" target="jyb" local="true">semen02.osd\jybUN7B Low</Data>
+        </Slider>
+        <Slider name="UN7B High" invert="false" small="0" big="0">
+            <Data name="jy2UN7B High" target="jy2" local="true">semen02.osd\jy2UN7B High</Data>
+            <Data name="jybUN7B High" target="jyb" local="true">semen02.osd\jybUN7B High</Data>
+        </Slider>
+        <Slider name="UNPBB Low" invert="false" small="0" big="0">
+            <Data name="jy2UNPBB Low" target="jy2" local="true">semen02.osd\jy2UNPBB Low</Data>
+            <Data name="jybUNPBB Low" target="jyb" local="true">semen02.osd\jybUNPBB Low</Data>
+        </Slider>
+        <Slider name="UNPBB High" invert="false" small="0" big="0">
+            <Data name="jy2UNPBB High" target="jy2" local="true">semen02.osd\jy2UNPBB High</Data>
+            <Data name="jybUNPBB High" target="jyb" local="true">semen02.osd\jybUNPBB High</Data>
+        </Slider>
+        <Slider name="Seraphim Low" invert="false" small="0" big="0">
+            <Data name="jy2Seraphim Low" target="jy2" local="true">semen02.osd\jy2Seraphim Low</Data>
+            <Data name="jybSeraphim Low" target="jyb" local="true">semen02.osd\jybSeraphim Low</Data>
+        </Slider>
+        <Slider name="Seraphim High" invert="false" small="0" big="0">
+            <Data name="jy2Seraphim High" target="jy2" local="true">semen02.osd\jy2Seraphim High</Data>
+            <Data name="jybSeraphim High" target="jyb" local="true">semen02.osd\jybSeraphim High</Data>
+        </Slider>
+        <Slider name="Demonfet Low" invert="false" small="0" big="0">
+            <Data name="jy2Demonfet Low" target="jy2" local="true">semen02.osd\jy2Demonfet Low</Data>
+            <Data name="jybDemonfet Low" target="jyb" local="true">semen02.osd\jybDemonfet Low</Data>
+        </Slider>
+        <Slider name="Demonfet High" invert="false" small="0" big="0">
+            <Data name="jy2Demonfet High" target="jy2" local="true">semen02.osd\jy2Demonfet High</Data>
+            <Data name="jybDemonfet High" target="jyb" local="true">semen02.osd\jybDemonfet High</Data>
+        </Slider>
+        <Slider name="Dream Girl Low" invert="false" small="0" big="0">
+            <Data name="jy2Dream Girl Low" target="jy2" local="true">semen02.osd\jy2Dream Girl Low</Data>
+            <Data name="jybDream Girl Low" target="jyb" local="true">semen02.osd\jybDream Girl Low</Data>
+        </Slider>
+        <Slider name="Dream Girl High" invert="false" small="0" big="0">
+            <Data name="jy2Dream Girl High" target="jy2" local="true">semen02.osd\jy2Dream Girl High</Data>
+            <Data name="jybDream Girl High" target="jyb" local="true">semen02.osd\jybDream Girl High</Data>
+        </Slider>
+        <Slider name="Top Model Low" invert="false" small="0" big="0">
+            <Data name="jy2Top Model Low" target="jy2" local="true">semen02.osd\jy2Top Model Low</Data>
+            <Data name="jybTop Model Low" target="jyb" local="true">semen02.osd\jybTop Model Low</Data>
+        </Slider>
+        <Slider name="Top Model High" invert="false" small="0" big="0">
+            <Data name="jy2Top Model High" target="jy2" local="true">semen02.osd\jy2Top Model High</Data>
+            <Data name="jybTop Model High" target="jyb" local="true">semen02.osd\jybTop Model High</Data>
+        </Slider>
+        <Slider name="Leito Low" invert="false" small="0" big="0">
+            <Data name="jy2Leito Low" target="jy2" local="true">semen02.osd\jy2Leito Low</Data>
+            <Data name="jybLeito Low" target="jyb" local="true">semen02.osd\jybLeito Low</Data>
+        </Slider>
+        <Slider name="Leito High" invert="false" small="0" big="0">
+            <Data name="jy2Leito High" target="jy2" local="true">semen02.osd\jy2Leito High</Data>
+            <Data name="jybLeito High" target="jyb" local="true">semen02.osd\jybLeito High</Data>
+        </Slider>
+        <Slider name="UNPF Low" invert="false" small="0" big="0">
+            <Data name="jy2UNPF Low" target="jy2" local="true">semen02.osd\jy2UNPF Low</Data>
+            <Data name="jybUNPF Low" target="jyb" local="true">semen02.osd\jybUNPF Low</Data>
+        </Slider>
+        <Slider name="UNPF High" invert="false" small="0" big="0">
+            <Data name="jy2UNPF High" target="jy2" local="true">semen02.osd\jy2UNPF High</Data>
+            <Data name="jybUNPF High" target="jyb" local="true">semen02.osd\jybUNPF High</Data>
+        </Slider>
+        <Slider name="UNPFx Low" invert="false" small="0" big="0">
+            <Data name="jy2UNPFx Low" target="jy2" local="true">semen02.osd\jy2UNPFx Low</Data>
+            <Data name="jybUNPFx Low" target="jyb" local="true">semen02.osd\jybUNPFx Low</Data>
+        </Slider>
+        <Slider name="UNPFx High" invert="false" small="0" big="0">
+            <Data name="jy2UNPFx High" target="jy2" local="true">semen02.osd\jy2UNPFx High</Data>
+            <Data name="jybUNPFx High" target="jyb" local="true">semen02.osd\jybUNPFx High</Data>
+        </Slider>
+        <Slider name="CNHF Low" invert="false" small="0" big="0">
+            <Data name="jy2CNHF Low" target="jy2" local="true">semen02.osd\jy2CNHF Low</Data>
+            <Data name="jybCNHF Low" target="jyb" local="true">semen02.osd\jybCNHF Low</Data>
+        </Slider>
+        <Slider name="CNHF High" invert="false" small="0" big="0">
+            <Data name="jy2CNHF High" target="jy2" local="true">semen02.osd\jy2CNHF High</Data>
+            <Data name="jybCNHF High" target="jyb" local="true">semen02.osd\jybCNHF High</Data>
+        </Slider>
+        <Slider name="CNHF Bonus Low" invert="false" small="0" big="0">
+            <Data name="jy2CNHF Bonus Low" target="jy2" local="true">semen02.osd\jy2CNHF Bonus Low</Data>
+            <Data name="jybCNHF Bonus Low" target="jyb" local="true">semen02.osd\jybCNHF Bonus Low</Data>
+        </Slider>
+        <Slider name="CNHF Bonus High" invert="false" small="0" big="0">
+            <Data name="jy2CNHF Bonus High" target="jy2" local="true">semen02.osd\jy2CNHF Bonus High</Data>
+            <Data name="jybCNHF Bonus High" target="jyb" local="true">semen02.osd\jybCNHF Bonus High</Data>
+        </Slider>
+        <Slider name="MCBM Low" invert="false" small="0" big="0">
+            <Data name="jy2MCBM Low" target="jy2" local="true">semen02.osd\jy2MCBM Low</Data>
+            <Data name="jybMCBM Low" target="jyb" local="true">semen02.osd\jybMCBM Low</Data>
+        </Slider>
+        <Slider name="MCBM High" invert="false" small="0" big="0">
+            <Data name="jy2MCBM High" target="jy2" local="true">semen02.osd\jy2MCBM High</Data>
+            <Data name="jybMCBM High" target="jyb" local="true">semen02.osd\jybMCBM High</Data>
+        </Slider>
+        <Slider name="Venus Low" invert="false" small="0" big="0">
+            <Data name="jy2Venus Low" target="jy2" local="true">semen02.osd\jy2Venus Low</Data>
+            <Data name="jybVenus Low" target="jyb" local="true">semen02.osd\jybVenus Low</Data>
+        </Slider>
+        <Slider name="Venus High" invert="false" small="0" big="0">
+            <Data name="jy2Venus High" target="jy2" local="true">semen02.osd\jy2Venus High</Data>
+            <Data name="jybVenus High" target="jyb" local="true">semen02.osd\jybVenus High</Data>
+        </Slider>
+        <Slider name="ZGGB-R2 Low" invert="false" small="0" big="0">
+            <Data name="jy2ZGGB-R2 Low" target="jy2" local="true">semen02.osd\jy2ZGGB-R2 Low</Data>
+            <Data name="jybZGGB-R2 Low" target="jyb" local="true">semen02.osd\jybZGGB-R2 Low</Data>
+        </Slider>
+        <Slider name="ZGGB-R2 High" invert="false" small="0" big="0">
+            <Data name="jy2ZGGB-R2 High" target="jy2" local="true">semen02.osd\jy2ZGGB-R2 High</Data>
+            <Data name="jybZGGB-R2 High" target="jyb" local="true">semen02.osd\jybZGGB-R2 High</Data>
+        </Slider>
+        <Slider name="Manga Low" invert="false" small="0" big="0">
+            <Data name="jy2Manga Low" target="jy2" local="true">semen02.osd\jy2Manga Low</Data>
+            <Data name="jybManga Low" target="jyb" local="true">semen02.osd\jybManga Low</Data>
+        </Slider>
+        <Slider name="Manga High" invert="false" small="0" big="0">
+            <Data name="jy2Manga High" target="jy2" local="true">semen02.osd\jy2Manga High</Data>
+            <Data name="jybManga High" target="jyb" local="true">semen02.osd\jybManga High</Data>
+        </Slider>
+        <Slider name="CHSBHC Low" invert="false" small="0" big="0">
+            <Data name="jy2CHSBHC Low" target="jy2" local="true">semen02.osd\jy2CHSBHC Low</Data>
+            <Data name="jybCHSBHC Low" target="jyb" local="true">semen02.osd\jybCHSBHC Low</Data>
+        </Slider>
+        <Slider name="CHSBHC High" invert="false" small="0" big="0">
+            <Data name="jy2CHSBHC High" target="jy2" local="true">semen02.osd\jy2CHSBHC High</Data>
+            <Data name="jybCHSBHC High" target="jyb" local="true">semen02.osd\jybCHSBHC High</Data>
+        </Slider>
+    </SliderSet>
+</SliderSetInfo>
