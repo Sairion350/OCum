@@ -3,7 +3,7 @@
     <SliderSet name="semen_belly01">
         <DataFolder>semen_belly01</DataFolder>
         <SourceFile>semen_belly01.nif</SourceFile>
-        <OutputPath>Meshes\Kziitd\cloth</OutputPath>
+        <OutputPath>Meshes\Kziitd\</OutputPath>
         <OutputFile GenWeights="true">semen_belly01</OutputFile>
         <Shape target="jy">jy</Shape>
         <Slider name="Breasts" invert="true" small="100" big="100">
