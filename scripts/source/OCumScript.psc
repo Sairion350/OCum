@@ -176,9 +176,10 @@ Event OstimOrgasm(string eventName, string strArg, float numArg, Form sender)
 			endif
 		ElseIf (cumAmount > 0 && ostim.IsOral())
 			SendModEvent("ocum_cumoral", numArg=cumAmount)
+		Else
+			CumShoot(orgasmer, cumamount)
 		endif
 
-		CumShoot(orgasmer, cumamount)
 		if (orgasmer == playerref)|| (partner == playerref)
 			ostim.SetOrgasmStall(false) 
 			TempDisplayBar()
