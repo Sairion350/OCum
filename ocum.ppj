@@ -33,6 +33,7 @@
             <Include>Meshes</Include>
             <Include>Sounds</Include>
             <Include>Textures</Include>
+            <Include>CalienteTools</Include>
         </ZipFile>
     </ZipFiles>
 </PapyrusProject>

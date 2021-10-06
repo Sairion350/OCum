@@ -43,6 +43,16 @@ armor Squirt1
 armor Squirt2
 armor Squirt3
 
+armor OCumSemen01
+armor OCumSemen02
+armor OCumSemen_breasts01
+armor OCumSemen_breasts02
+armor OCumSemen_belly01
+armor OCumSemen_belly02
+armor OCumSemen_butt01
+armor OCumSemen_butt02
+armor OCumSemen_pussy01
+
 globalvariable RegenMod
 GlobalVariable DisableInflation
 GlobalVariable DisableCumshot
@@ -73,6 +83,7 @@ Event OnInit()
 	cumSpell4 = game.GetFormFromFile(0x000811, "OCum.esp") as spell
 
 	cleanFacialSpell = game.GetFormFromFile(0x011D68, "OCum.esp") as spell
+	;facial stuff broken at the moment
 	facialSpell1 = game.GetFormFromFile(0x00F5C1, "OCum.esp") as spell
 	facialSpell2 = game.GetFormFromFile(0x00F5CB, "OCum.esp") as spell
 	facialSpell3 = game.GetFormFromFile(0x00F5CC, "OCum.esp") as spell
@@ -85,6 +96,16 @@ Event OnInit()
 	Squirt1 = game.GetFormFromFile(0x00574E, "OCum.esp") as armor
 	Squirt2 = game.GetFormFromFile(0x00574F, "OCum.esp") as armor
 	Squirt3 = game.GetFormFromFile(0x005750, "OCum.esp") as armor
+
+	OCumSemen01 = game.GetFormFromFile(0x00F5CA, "OCum.esp") as armor
+	OCumSemen02 = game.GetFormFromFile(0x00F5CB, "OCum.esp") as armor
+	OCumSemen_breasts01 = game.GetFormFromFile(0x00F5CC, "OCum.esp") as armor
+	OCumSemen_breasts02 = game.GetFormFromFile(0x00F5CD, "OCum.esp") as armor
+	OCumSemen_belly01 = game.GetFormFromFile(0x00F5CE, "OCum.esp") as armor
+	OCumSemen_belly02 = game.GetFormFromFile(0x00F5CF, "OCum.esp") as armor
+	OCumSemen_butt01 = game.GetFormFromFile(0x00F5D0, "OCum.esp") as armor
+	OCumSemen_butt02 = game.GetFormFromFile(0x00F5D1, "OCum.esp") as armor
+	OCumSemen_pussy01 = game.GetFormFromFile(0x00F5D2, "OCum.esp") as armor
 
 	cumSound = game.GetFormFromFile(0x00574D, "OCum.esp") as sound
 	squirtSound = game.GetFormFromFile(0x007EF0, "OCum.esp") as sound
@@ -124,7 +145,6 @@ EndFunction
 
 Event OstimRedressEnd(string eventName, string strArg, float numArg, Form sender)
 	console("OCum Cleaning up armors...")
-
 	actor dom = ostim.GetDomActor()
 	actor sub = ostim.GetSubActor()
 	actor third = ostim.GetThirdActor()
@@ -538,6 +558,7 @@ Function OnLoad()
 	RegisterForModEvent("ostim_orgasm", "OstimOrgasm")
 	RegisterForModEvent("ostim_redresscomplete", "OstimRedressEnd")
 	RegisterForModEvent("ostim_prestart", "OStimPreStart")
+	RegisterForModEvent("ostim_end", "OstimEnd")
 	RegisterForKey(CheckCumKey)
 EndFunction
 
@@ -761,8 +782,65 @@ function CumOnto(actor act, string TexFilename, bool body = true)
 	endif
 	ReadyOverlay(act, ostim.AppearsFemale(act), area, GetCumTexture(TexFilename))
 	cummedOnActs = PapyrusUtil.PushActor(cummedonacts, act)
+	; todo add global to enable or disable cum meshes AND one for textures.
+	EquipCumMesh(act, area, TexFileName)
 	RegisterForSingleUpdateGameTime(1.66)
-endfunction 
+endfunction
+
+Function EquipCumMesh(actor act, string area, string TexFileName)
+	; area is unused here for now, might use it in future so I included it.
+	if     (TexFileName == "Oral1")
+		Equipper(act, OCumSemen_breasts01)
+	elseIf (TexFileName == "Oral1Alt")
+		Equipper(act, OCumSemen_breasts01)
+	elseIf (TexFileName == "Oral2")
+		Equipper(act, OCumSemen_breasts02)
+	elseIf (TexFileName == "Anal1")
+		Equipper(act, OCumSemen_butt01)
+	elseIf (TexFileName == "Anal2")
+		Equipper(act, OCumSemen_butt02)
+	elseIf (TexFileName == "Anal3")
+		Equipper(act, OCumSemen_butt02)
+	elseIf (TexFileName == "Vaginal1")
+		Equipper(act, OCumSemen_pussy01)
+	elseIf (TexFileName == "Vaginal2")
+		Equipper(act, OCumSemen_belly01)
+	elseIf (TexFileName == "Vaginal2alt")
+		Equipper(act, OCumSemen_belly02)
+	elseIf (TexFileName == "Vaginal3")
+		Equipper(act, OCumSemen01)
+	Else
+		Equipper(act, OCumSemen02)
+	endIf
+EndFunction
+
+actor[] actorcache
+form[] formcache
+function Equipper(actor act, armor item)
+	act.equipItem(item, true, true)
+	actorcache = PapyrusUtil.PushActor(actorcache, act)
+	formcache = PapyrusUtil.PushForm(formcache, item)
+endfunction
+
+Event OstimEnd(string eventName, string strArg, float numArg, Form sender)
+	UnEquipper() ; unequip cum mesh
+endEvent
+
+function UnEquipper() ; remove all items in formcache from all actors in actorcache
+	console(actorcache[0])
+	console(actorcache.Length)
+	int x = 0
+	while x < actorcache.Length
+		int k = 0
+		while k < formcache.Length
+			actorcache[x].removeItem(formcache[k], 99, true)
+			k += 1
+		endwhile
+		x += 1
+	endwhile
+	actorcache = papyrusutil.ResizeActorArray(actorcache, 0)
+	formcache = PapyrusUtil.ResizeFormArray(formcache, 0)
+endfunction
 
 function Facialize(actor male, actor sub, int intensity)
 	Spell facialSpell
