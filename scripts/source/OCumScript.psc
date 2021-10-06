@@ -125,8 +125,6 @@ Event OnInit()
 	;CumOnto(playerref, "Oral1")
 	;AdjustStoredCumAmount(playerref, GetMaxCumStoragePossible(playerref) * 2)
 	;TempDisplayBar()
-	RegisterForKey(26)
-	RegisterForKey(27)
 EndEvent
 
 bool function DisableInflationbool()
@@ -147,7 +145,6 @@ EndFunction
 
 Event OstimRedressEnd(string eventName, string strArg, float numArg, Form sender)
 	console("OCum Cleaning up armors...")
-
 	actor dom = ostim.GetDomActor()
 	actor sub = ostim.GetSubActor()
 	actor third = ostim.GetThirdActor()
@@ -554,12 +551,6 @@ Event OnKeyDown(Int KeyPress)
 	if KeyPress == CheckCumKey
 		TempDisplayBar()
 	endif
-	if keypress == 26
-		equipper(playerRef, OCumSemen_breasts01)
-	endif
-	if keypress == 27
-		UnEquipper()
-	endif
 EndEvent
 
 
@@ -824,38 +815,31 @@ Function EquipCumMesh(actor act, string area, string TexFileName)
 EndFunction
 
 actor[] actorcache
-
+form[] formcache
 function Equipper(actor act, armor item)
 	act.equipItem(item, true, true)
-	JFormDB.setForm(act, ".OCumStorage.items."+item.getName(), item)
 	actorcache = PapyrusUtil.PushActor(actorcache, act)
-	console(actorcache[0])
-	console(actorcache[1])
+	formcache = PapyrusUtil.PushForm(formcache, item)
 endfunction
 
 Event OstimEnd(string eventName, string strArg, float numArg, Form sender)
-	UnEquipper()
+	UnEquipper() ; unequip cum mesh
 endEvent
 
-function UnEquipper()
+function UnEquipper() ; remove all items in formcache from all actors in actorcache
 	console(actorcache[0])
-	console(actorcache[1])
-	console(actorcache[5])
+	console(actorcache.Length)
 	int x = 0
-	while x <= actorcache.Length
-		int items = JFormDB.GetObj(actorcache[x], ".OCumStorage.items")
-		JValue.WriteToFile(items, "test1234.json")
-		string itemkey = Jmap.NextKey(items)
-		while itemkey
-			armor item = JMap.GetForm(items, itemkey) as armor
-			console(item.getname())
-			actorcache[x].removeItem(item, 99, true)
-			itemkey = jmap.nextkey(items, itemkey)
+	while x < actorcache.Length
+		int k = 0
+		while k < formcache.Length
+			actorcache[x].removeItem(formcache[k], 99, true)
+			k += 1
 		endwhile
-		JFormDB.setEntry("OCumStorage", actorcache[x], 0)
-		actorcache = papyrusutil.removeactor(actorcache, actorcache[x])
 		x += 1
 	endwhile
+	actorcache = papyrusutil.ResizeActorArray(actorcache, 0)
+	formcache = PapyrusUtil.ResizeFormArray(formcache, 0)
 endfunction
 
 function Facialize(actor male, actor sub, int intensity)
