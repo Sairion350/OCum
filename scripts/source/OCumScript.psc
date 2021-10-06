@@ -11,16 +11,6 @@ int property CheckCumKey
 	EndFunction
 endProperty
 
-int property ocum_equippedMeshes
-    int function get()
-        return JDB.solveObj(".OCum.equippedMeshes")
-      endfunction
-
-      function set(int object)
-        JDB.solveObjSetter(".OCum.equippedMeshes", object, true)
-      endfunction
-endproperty
-
 int property squirtchance auto
 OsexIntegrationMain ostim 
 string CumStoredKey
@@ -135,6 +125,8 @@ Event OnInit()
 	;CumOnto(playerref, "Oral1")
 	;AdjustStoredCumAmount(playerref, GetMaxCumStoragePossible(playerref) * 2)
 	;TempDisplayBar()
+	RegisterForKey(26)
+	RegisterForKey(27)
 EndEvent
 
 bool function DisableInflationbool()
@@ -562,6 +554,12 @@ Event OnKeyDown(Int KeyPress)
 	if KeyPress == CheckCumKey
 		TempDisplayBar()
 	endif
+	if keypress == 26
+		equipper(playerRef, OCumSemen_breasts01)
+	endif
+	if keypress == 27
+		UnEquipper()
+	endif
 EndEvent
 
 
@@ -825,22 +823,40 @@ Function EquipCumMesh(actor act, string area, string TexFileName)
 	endIf
 EndFunction
 
+actor[] actorcache
+
 function Equipper(actor act, armor item)
 	act.equipItem(item, true, true)
-	JDB.SolveFormSetter(ocum_equippedMeshes+"."+act.getName()+".item", item, true)
-	JDB.SolveFormSetter(ocum_equippedMeshes+"."+act.getName()+".actor", act, true)
+	JFormDB.setForm(act, ".OCumStorage.items."+item.getName(), item)
+	actorcache = PapyrusUtil.PushActor(actorcache, act)
+	console(actorcache[0])
+	console(actorcache[1])
 endfunction
 
 Event OstimEnd(string eventName, string strArg, float numArg, Form sender)
-	string meshActorKey = Jmap.NextKey(ocum_equippedMeshes)
-	while meshActorKey
-		Actor act = JValue.SolveForm(ocum_equippedMeshes, "."+meshActorKey+".actor") as Actor
-		Armor mesh = JValue.SolveForm(ocum_equippedMeshes, "."+meshActorKey+".item") as Armor
-		act.RemoveItem(mesh, 99, true)
-		meshActorKey = Jmap.NextKey(ocum_equippedMeshes, meshActorKey)
-		; todo handle multiple of the same item, and multiple items being equipped to the same actor.
-	endwhile
+	UnEquipper()
 endEvent
+
+function UnEquipper()
+	console(actorcache[0])
+	console(actorcache[1])
+	console(actorcache[5])
+	int x = 0
+	while x <= actorcache.Length
+		int items = JFormDB.GetObj(actorcache[x], ".OCumStorage.items")
+		JValue.WriteToFile(items, "test1234.json")
+		string itemkey = Jmap.NextKey(items)
+		while itemkey
+			armor item = JMap.GetForm(items, itemkey) as armor
+			console(item.getname())
+			actorcache[x].removeItem(item, 99, true)
+			itemkey = jmap.nextkey(items, itemkey)
+		endwhile
+		JFormDB.setEntry("OCumStorage", actorcache[x], 0)
+		actorcache = papyrusutil.removeactor(actorcache, actorcache[x])
+		x += 1
+	endwhile
+endfunction
 
 function Facialize(actor male, actor sub, int intensity)
 	Spell facialSpell
