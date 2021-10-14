@@ -164,8 +164,7 @@ Event OstimOrgasm(string eventName, string strArg, float numArg, Form sender)
 		float idealMax = (MaxStorage / 2) + (MaxStorage * OSANative.RandomFloat(-0.15, 0.15))
 		float currentCum = GetCumStoredAmount(orgasmer)
 
-		actor partner = ostim.GetSexPartner(orgasmer)
-		bool malePartner = !ostim.IsFemale(partner)
+		
 
 		if idealMax < currentCum
 			cumamount = idealMax
@@ -176,19 +175,23 @@ Event OstimOrgasm(string eventName, string strArg, float numArg, Form sender)
 		console("Blowing load size: " + CumAmount + " ML")
 		AdjustStoredCumAmount(orgasmer, 0 - CumAmount)
 
-
-		ApplyCumAsNecessary(orgasmer, partner, CumAmount)
-		if ostim.IsVaginal() 
-			if !malePartner ; give it to female
-				AdjustStoredCumAmount(partner, CumAmount)
+		if !ostim.IsSoloScene()
+			actor partner = ostim.GetSexPartner(orgasmer)
+			bool malePartner = !ostim.IsFemale(partner)
+			ApplyCumAsNecessary(orgasmer, partner, CumAmount)
+			if ostim.IsVaginal() 
+				if !malePartner ; give it to female
+					AdjustStoredCumAmount(partner, CumAmount)
+				endif
+			ElseIf (cumAmount > 0 && ostim.IsOral())
+				SendModEvent("ocum_cumoral", numArg=cumAmount)
+				
 			endif
-		ElseIf (cumAmount > 0 && ostim.IsOral())
-			SendModEvent("ocum_cumoral", numArg=cumAmount)
-		Else
-			CumShoot(orgasmer, cumamount)
-		endif
+		EndIf
 
-		if (orgasmer == playerref)|| (partner == playerref)
+		CumShoot(orgasmer, cumamount)
+
+		if ostim.IsPlayerInvolved()
 			ostim.SetOrgasmStall(false) 
 			TempDisplayBar()
 		endif
