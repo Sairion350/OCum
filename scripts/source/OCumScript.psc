@@ -1,4 +1,4 @@
-ScriptName OCumScript Extends Quest Conditional
+ScriptName OCumScript Extends OStimAddon Conditional
 
 ;needs StorageUtils from papyrusutils
 int property CheckCumKey
@@ -12,11 +12,9 @@ int property CheckCumKey
 endProperty
 
 int property squirtchance auto
-OsexIntegrationMain ostim 
 string CumStoredKey
 string LastCumCheckTimeKey
 string MaxCumVolumeKey
-actor playerref
 
 Osexbar CumBar
 
@@ -59,17 +57,10 @@ GlobalVariable DisableCumshot
 
 Event OnInit()
 
-	debug.Notification("OCum installed")
-	
+	LoadGameEvents = false 
+	InstallAddon("OCum")
 
-	ostim = game.GetFormFromFile(0x000801, "Ostim.esp") as OsexIntegrationMain
-	playerref = game.GetPlayer()
 
-	console("OCum installed")
-
-	if ostim.GetAPIVersion() < 7
-		debug.MessageBox("Your ostim version is out of date. update now")
-	endif
 
 	CumStoredKey = "CumStoredAmount"
 	LastCumCheckTimeKey = "CumLastCalcTime"
@@ -121,10 +112,7 @@ Event OnInit()
 
 	OnLoad()
 
-	Utility.Wait(5)
-	;CumOnto(playerref, "Oral1")
-	;AdjustStoredCumAmount(playerref, GetMaxCumStoragePossible(playerref) * 2)
-	;TempDisplayBar()
+
 EndEvent
 
 bool function DisableInflationbool()
@@ -207,12 +195,12 @@ Event OstimOrgasm(string eventName, string strArg, float numArg, Form sender)
 
 
 	else 
-		if ostim.ChanceRoll(50)
+		if outils.ChanceRoll(50)
 			if !ostim.MuteOSA
 				ostim.PlaySound(orgasmer, femaleGasp)
 			endif 
 		endif
-		if ostim.ChanceRoll(squirtchance)
+		if outils.ChanceRoll(squirtchance)
 			Squirt(orgasmer)
 		endif
 	endif
@@ -471,10 +459,10 @@ function CumShoot(actor act, float amountML)
 		targetZ = uPos[2] + uRM[7] * 200.0 + OSANative.RandomFloat(-10.0, 10.0) - ((i as Float) / (numSpurts as Float) - 0.5) * 180.0  ; later spurts fly lower, and (usually) less distance
 		target.SetPosition(targetX, targetY, targetZ) 
 
-		bool doublefire = ostim.ChanceRoll(doubleFireChance)
+		bool doublefire = outils.ChanceRoll(doubleFireChance)
 		bool tripleFire = false
 		if doublefire
-			tripleFire = ostim.ChanceRoll(tripleFireChance)
+			tripleFire = outils.ChanceRoll(tripleFireChance)
 		endif
 	
 		FireCumBlast(caster, target, OSANative.RandomInt(1, 4), act)
@@ -616,17 +604,17 @@ function ApplyCumAsNecessary(actor male, actor sub, float amountML)
 			if intensity == 2
 				CumOnto(sub, "Anal1")
 			elseif intensity == 3
-				if ostim.ChanceRoll(50)
+				if outils.ChanceRoll(50)
 					CumOnto(sub, "Anal2")
 				else 
 					CumOnto(sub, "Anal1")
 				endif 
 			elseif intensity == 4
 				CumOnto(sub, "Anal3")
-				if ostim.ChanceRoll(75)
+				if outils.ChanceRoll(75)
 					CumOnto(sub, "Anal1")
 				endif 
-				if ostim.ChanceRoll(75)
+				if outils.ChanceRoll(75)
 					CumOnto(sub, "Anal2")
 				endif 
 			endif
@@ -634,8 +622,8 @@ function ApplyCumAsNecessary(actor male, actor sub, float amountML)
 			if intensity == 2
 				CumOnto(sub, "Vaginal1")
 			elseif intensity == 3
-				if ostim.ChanceRoll(50)
-					if ostim.ChanceRoll(50)
+				if outils.ChanceRoll(50)
+					if outils.ChanceRoll(50)
 						CumOnto(sub, "Vaginal2")
 					else 
 						CumOnto(sub, "Vaginal2Alt")
@@ -645,11 +633,11 @@ function ApplyCumAsNecessary(actor male, actor sub, float amountML)
 				endif 
 			elseif intensity == 4
 				CumOnto(sub, "Vaginal3")
-				if ostim.ChanceRoll(75)
+				if outils.ChanceRoll(75)
 					CumOnto(sub, "Vaginal1")
 				endif 
-				if ostim.ChanceRoll(75)
-					if ostim.ChanceRoll(50)
+				if outils.ChanceRoll(75)
+					if outils.ChanceRoll(50)
 						CumOnto(sub, "Vaginal2")
 					else 
 						CumOnto(sub, "Vaginal2Alt")
@@ -660,7 +648,7 @@ function ApplyCumAsNecessary(actor male, actor sub, float amountML)
 
 			string cclass = ostim.GetCurrentAnimationClass()
 			if cclass == "HhBj" || cclass == "BJ"
-				if ostim.ChanceRoll(50)
+				if outils.ChanceRoll(50)
 					return 
 				endif
 			endif 
@@ -668,15 +656,15 @@ function ApplyCumAsNecessary(actor male, actor sub, float amountML)
 			Facialize(male, sub, intensity)
 
 			if (intensity == 2) || (intensity == 1)
-				if ostim.ChanceRoll(50)
+				if outils.ChanceRoll(50)
 					CumOnto(sub, "Oral1")
 				else 
 					CumOnto(sub, "Oral1Alt")
 				endif
 			elseif intensity == 3
 				CumOnto(sub, "Oral2")
-				if ostim.ChanceRoll(50)
-					if ostim.ChanceRoll(50)
+				if outils.ChanceRoll(50)
+					if outils.ChanceRoll(50)
 						CumOnto(sub, "Oral1")
 					else 
 						CumOnto(sub, "Oral1Alt")
