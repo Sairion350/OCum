@@ -54,6 +54,8 @@ armor OCumSemen_pussy01
 globalvariable RegenMod
 GlobalVariable DisableInflation
 GlobalVariable DisableCumshot
+GlobalVariable DisableCumMesh
+GlobalVariable DisableCumDecal
 
 Event OnInit()
 
