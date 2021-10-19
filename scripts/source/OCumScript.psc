@@ -18,44 +18,44 @@ string MaxCumVolumeKey
 
 Osexbar CumBar
 
-spell cumSpell1
-spell cumSpell2
-spell cumSpell3
-spell cumSpell4
+spell property cumSpell1 auto
+spell property cumSpell2 auto
+spell property cumSpell3 auto
+spell property cumSpell4 auto
 
-spell cleanFacialSpell
-spell facialSpell1
-spell facialSpell2
-spell facialSpell3
-spell facialSpell4
+spell property cleanFacialSpell auto
+spell property facialSpell1 auto
+spell property facialSpell2 auto
+spell property facialSpell3 auto
+spell property facialSpell4 auto
 
-Activator CumLauncher
+Activator property CumLauncher auto
 
-armor UrethraNode
+armor property UrethraNode auto
 
-sound cumSound 
-sound squirtSound
-sound femaleGasp
+sound property cumSound auto 
+sound property squirtSound auto
+sound property femaleGasp auto
 
-armor Squirt1
-armor Squirt2
-armor Squirt3
+armor property Squirt1 auto
+armor property Squirt2 auto
+armor property Squirt3 auto
 
-armor OCumSemen01
-armor OCumSemen02
-armor OCumSemen_breasts01
-armor OCumSemen_breasts02
-armor OCumSemen_belly01
-armor OCumSemen_belly02
-armor OCumSemen_butt01
-armor OCumSemen_butt02
-armor OCumSemen_pussy01
+armor property OCumSemen01 auto
+armor property OCumSemen02 auto
+armor property OCumSemen_breasts01 auto
+armor property OCumSemen_breasts02 auto
+armor property OCumSemen_belly01 auto
+armor property OCumSemen_belly02 auto
+armor property OCumSemen_butt01 auto
+armor property OCumSemen_butt02 auto
+armor property OCumSemen_pussy01 auto
 
-globalvariable RegenMod
-GlobalVariable DisableInflation
-GlobalVariable DisableCumshot
-GlobalVariable DisableCumMesh
-GlobalVariable DisableCumDecal
+GlobalVariable property RegenMod auto
+GlobalVariable property DisableInflation auto
+GlobalVariable property DisableCumshot auto
+GlobalVariable property DisableCumMesh auto
+GlobalVariable property DisableCumDecal auto
 
 Event OnInit()
 
