@@ -69,47 +69,47 @@ Event OnInit()
 	CumBar = (Self as Quest) as Osexbar
 	InitBar(cumbar)
 
-	cumSpell1 = game.GetFormFromFile(0x00080E, "OCum.esp") as spell
-	cumSpell2 = game.GetFormFromFile(0x00080f, "OCum.esp") as spell
-	cumSpell3 = game.GetFormFromFile(0x000810, "OCum.esp") as spell
-	cumSpell4 = game.GetFormFromFile(0x000811, "OCum.esp") as spell
+	cumSpell1 = outils.GetFormFromFile(0x00080E, "OCum.esp") as spell
+	cumSpell2 = outils.GetFormFromFile(0x00080f, "OCum.esp") as spell
+	cumSpell3 = outils.GetFormFromFile(0x000810, "OCum.esp") as spell
+	cumSpell4 = outils.GetFormFromFile(0x000811, "OCum.esp") as spell
 
-	cleanFacialSpell = game.GetFormFromFile(0x011D68, "OCum.esp") as spell
+	cleanFacialSpell = outils.GetFormFromFile(0x011D68, "OCum.esp") as spell
 	;facial stuff broken at the moment
-	facialSpell1 = game.GetFormFromFile(0x00F5C1, "OCum.esp") as spell
-	facialSpell2 = game.GetFormFromFile(0x00F5CB, "OCum.esp") as spell
-	facialSpell3 = game.GetFormFromFile(0x00F5CC, "OCum.esp") as spell
-	facialSpell4 = game.GetFormFromFile(0x00F5CD, "OCum.esp") as spell
+	facialSpell1 = outils.GetFormFromFile(0x00F5C1, "OCum.esp") as spell
+	facialSpell2 = outils.GetFormFromFile(0x00F5CB, "OCum.esp") as spell
+	facialSpell3 = outils.GetFormFromFile(0x00F5CC, "OCum.esp") as spell
+	facialSpell4 = outils.GetFormFromFile(0x00F5CD, "OCum.esp") as spell
 
-	CumLauncher = game.GetFormFromFile(0x000817, "OCum.esp") as Activator
+	CumLauncher = outils.GetFormFromFile(0x000817, "OCum.esp") as Activator
 
-	UrethraNode = game.GetFormFromFile(0x000818, "OCum.esp") as armor
+	UrethraNode = outils.GetFormFromFile(0x000818, "OCum.esp") as armor
 
-	Squirt1 = game.GetFormFromFile(0x00574E, "OCum.esp") as armor
-	Squirt2 = game.GetFormFromFile(0x00574F, "OCum.esp") as armor
-	Squirt3 = game.GetFormFromFile(0x005750, "OCum.esp") as armor
+	Squirt1 = outils.GetFormFromFile(0x00574E, "OCum.esp") as armor
+	Squirt2 = outils.GetFormFromFile(0x00574F, "OCum.esp") as armor
+	Squirt3 = outils.GetFormFromFile(0x005750, "OCum.esp") as armor
 
-	OCumSemen01 = game.GetFormFromFile(0x00F5CA, "OCum.esp") as armor
-	OCumSemen02 = game.GetFormFromFile(0x00F5CB, "OCum.esp") as armor
-	OCumSemen_breasts01 = game.GetFormFromFile(0x00F5CC, "OCum.esp") as armor
-	OCumSemen_breasts02 = game.GetFormFromFile(0x00F5CD, "OCum.esp") as armor
-	OCumSemen_belly01 = game.GetFormFromFile(0x00F5CE, "OCum.esp") as armor
-	OCumSemen_belly02 = game.GetFormFromFile(0x00F5CF, "OCum.esp") as armor
-	OCumSemen_butt01 = game.GetFormFromFile(0x00F5D0, "OCum.esp") as armor
-	OCumSemen_butt02 = game.GetFormFromFile(0x00F5D1, "OCum.esp") as armor
-	OCumSemen_pussy01 = game.GetFormFromFile(0x00F5D2, "OCum.esp") as armor
+	OCumSemen01 = outils.GetFormFromFile(0x00F5CA, "OCum.esp") as armor
+	OCumSemen02 = outils.GetFormFromFile(0x00F5CB, "OCum.esp") as armor
+	OCumSemen_breasts01 = outils.GetFormFromFile(0x00F5CC, "OCum.esp") as armor
+	OCumSemen_breasts02 = outils.GetFormFromFile(0x00F5CD, "OCum.esp") as armor
+	OCumSemen_belly01 = outils.GetFormFromFile(0x00F5CE, "OCum.esp") as armor
+	OCumSemen_belly02 = outils.GetFormFromFile(0x00F5CF, "OCum.esp") as armor
+	OCumSemen_butt01 = outils.GetFormFromFile(0x00F5D0, "OCum.esp") as armor
+	OCumSemen_butt02 = outils.GetFormFromFile(0x00F5D1, "OCum.esp") as armor
+	OCumSemen_pussy01 = outils.GetFormFromFile(0x00F5D2, "OCum.esp") as armor
 
-	cumSound = game.GetFormFromFile(0x00574D, "OCum.esp") as sound
-	squirtSound = game.GetFormFromFile(0x007EF0, "OCum.esp") as sound
-	femaleGasp = game.GetFormFromFile(0x007EF1, "OCum.esp") as sound
+	cumSound = outils.GetFormFromFile(0x00574D, "OCum.esp") as sound
+	squirtSound = outils.GetFormFromFile(0x007EF0, "OCum.esp") as sound
+	femaleGasp = outils.GetFormFromFile(0x007EF1, "OCum.esp") as sound
 
 	cummedOnActs = new actor[1]
 
 	squirtchance = 25
 
-	RegenMod = game.GetFormFromFile(0x00CE25, "OCum.esp") as GlobalVariable
-	DisableInflation = game.GetFormFromFile(0x00CE26, "OCum.esp") as GlobalVariable
-	DisableCumshot = game.GetFormFromFile(0x00F5C0, "OCum.esp") as GlobalVariable
+	RegenMod = outils.GetFormFromFile(0x00CE25, "OCum.esp") as GlobalVariable
+	DisableInflation = outils.GetFormFromFile(0x00CE26, "OCum.esp") as GlobalVariable
+	DisableCumshot = outils.GetFormFromFile(0x00F5C0, "OCum.esp") as GlobalVariable
 
 	OnLoad()
 
