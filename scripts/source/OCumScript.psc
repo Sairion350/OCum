@@ -54,6 +54,8 @@ armor OCumSemen_pussy01
 globalvariable RegenMod
 GlobalVariable DisableInflation
 GlobalVariable DisableCumshot
+GlobalVariable DisableCumMesh
+GlobalVariable DisableCumDecal
 
 Event OnInit()
 
@@ -110,6 +112,8 @@ Event OnInit()
 	RegenMod = outils.GetFormFromFile(0x00CE25, "OCum.esp") as GlobalVariable
 	DisableInflation = outils.GetFormFromFile(0x00CE26, "OCum.esp") as GlobalVariable
 	DisableCumshot = outils.GetFormFromFile(0x00F5C0, "OCum.esp") as GlobalVariable
+	DisableCumMesh = game.GetFormFromFile(0x00F5D5, "OCum.esp") as GlobalVariable
+	DisableCumDecal = game.GetFormFromFile(0x00F5D6, "OCum.esp") as GlobalVariable
 
 	OnLoad()
 
@@ -772,15 +776,22 @@ function CumOnto(actor act, string TexFilename, bool body = true)
 	else 
 		area = "Face"
 	endif
-	ReadyOverlay(act, ostim.AppearsFemale(act), area, GetCumTexture(TexFilename))
-	cummedOnActs = PapyrusUtil.PushActor(cummedonacts, act)
-	; todo add global to enable or disable cum meshes AND one for textures.
-	EquipCumMesh(act, area, TexFileName)
+
+	if !(DisableCumDecal.GetValueInt()) as bool
+		ReadyOverlay(act, ostim.AppearsFemale(act), area, GetCumTexture(TexFilename))
+		cummedOnActs = PapyrusUtil.PushActor(cummedonacts, act)
+	endif
+
+	if !(DisableCumMesh.GetValueInt()) as bool
+		EquipCumMesh(act, area, TexFileName)
+	endif
+
 	RegisterForSingleUpdateGameTime(1.66)
 endfunction
 
 Function EquipCumMesh(actor act, string area, string TexFileName)
 	; area is unused here for now, might use it in future so I included it.
+	; no facial mesh yet, but might be possible in future.
 	if     (TexFileName == "Oral1")
 		Equipper(act, OCumSemen_breasts01)
 	elseIf (TexFileName == "Oral1Alt")
@@ -812,6 +823,9 @@ function Equipper(actor act, armor item)
 	act.equipItem(item, true, true)
 	actorcache = PapyrusUtil.PushActor(actorcache, act)
 	formcache = PapyrusUtil.PushForm(formcache, item)
+	if act == playerRef
+		act.QueueNiNodeUpdate()
+	endif
 endfunction
 
 Event OstimEnd(string eventName, string strArg, float numArg, Form sender)
@@ -819,8 +833,10 @@ Event OstimEnd(string eventName, string strArg, float numArg, Form sender)
 endEvent
 
 function UnEquipper() ; remove all items in formcache from all actors in actorcache
-	console(actorcache[0])
-	console(actorcache.Length)
+	if actorcache.Length <= 0
+		return ;fast fail
+	endif
+
 	int x = 0
 	while x < actorcache.Length
 		int k = 0
