@@ -58,6 +58,7 @@ GlobalVariable DisableCumshot
 Event OnInit()
 
 	LoadGameEvents = false 
+	RequiredVersion = 25
 	InstallAddon("OCum")
 
 
