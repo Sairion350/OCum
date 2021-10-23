@@ -18,101 +18,62 @@ string MaxCumVolumeKey
 
 Osexbar CumBar
 
-spell cumSpell1
-spell cumSpell2
-spell cumSpell3
-spell cumSpell4
+spell property cumSpell1 auto
+spell property cumSpell2 auto
+spell property cumSpell3 auto
+spell property cumSpell4 auto
 
-spell cleanFacialSpell
-spell facialSpell1
-spell facialSpell2
-spell facialSpell3
-spell facialSpell4
+spell property cleanFacialSpell auto
+spell property facialSpell1 auto
+spell property facialSpell2 auto
+spell property facialSpell3 auto
+spell property facialSpell4 auto
 
-Activator CumLauncher
+Activator property CumLauncher auto
 
-armor UrethraNode
+armor property UrethraNode auto
 
-sound cumSound 
-sound squirtSound
-sound femaleGasp
+sound property cumSound auto 
+sound property squirtSound auto
+sound property femaleGasp auto
 
-armor Squirt1
-armor Squirt2
-armor Squirt3
+armor property Squirt1 auto
+armor property Squirt2 auto
+armor property Squirt3 auto
 
-armor OCumSemen01
-armor OCumSemen02
-armor OCumSemen_breasts01
-armor OCumSemen_breasts02
-armor OCumSemen_belly01
-armor OCumSemen_belly02
-armor OCumSemen_butt01
-armor OCumSemen_butt02
-armor OCumSemen_pussy01
+armor property OCumSemen01 auto
+armor property OCumSemen02 auto
+armor property OCumSemen_breasts01 auto
+armor property OCumSemen_breasts02 auto
+armor property OCumSemen_belly01 auto
+armor property OCumSemen_belly02 auto
+armor property OCumSemen_butt01 auto
+armor property OCumSemen_butt02 auto
+armor property OCumSemen_pussy01 auto
 
-globalvariable RegenMod
-GlobalVariable DisableInflation
-GlobalVariable DisableCumshot
+GlobalVariable property RegenMod auto
+GlobalVariable property DisableInflation auto
+GlobalVariable property DisableCumshot auto
+GlobalVariable property DisableCumMesh auto
+GlobalVariable property DisableCumDecal auto
 
 Event OnInit()
 
 	LoadGameEvents = false 
 	RequiredVersion = 25
 	InstallAddon("OCum")
-
-
-
+	
 	CumStoredKey = "CumStoredAmount"
 	LastCumCheckTimeKey = "CumLastCalcTime"
 	MaxCumVolumeKey = "CumMaxAmount"
 	CumBar = (Self as Quest) as Osexbar
 	InitBar(cumbar)
 
-	cumSpell1 = outils.GetFormFromFile(0x00080E, "OCum.esp") as spell
-	cumSpell2 = outils.GetFormFromFile(0x00080f, "OCum.esp") as spell
-	cumSpell3 = outils.GetFormFromFile(0x000810, "OCum.esp") as spell
-	cumSpell4 = outils.GetFormFromFile(0x000811, "OCum.esp") as spell
-
-	cleanFacialSpell = outils.GetFormFromFile(0x011D68, "OCum.esp") as spell
-	;facial stuff broken at the moment
-	facialSpell1 = outils.GetFormFromFile(0x00F5C1, "OCum.esp") as spell
-	facialSpell2 = outils.GetFormFromFile(0x00F5CB, "OCum.esp") as spell
-	facialSpell3 = outils.GetFormFromFile(0x00F5CC, "OCum.esp") as spell
-	facialSpell4 = outils.GetFormFromFile(0x00F5CD, "OCum.esp") as spell
-
-	CumLauncher = outils.GetFormFromFile(0x000817, "OCum.esp") as Activator
-
-	UrethraNode = outils.GetFormFromFile(0x000818, "OCum.esp") as armor
-
-	Squirt1 = outils.GetFormFromFile(0x00574E, "OCum.esp") as armor
-	Squirt2 = outils.GetFormFromFile(0x00574F, "OCum.esp") as armor
-	Squirt3 = outils.GetFormFromFile(0x005750, "OCum.esp") as armor
-
-	OCumSemen01 = outils.GetFormFromFile(0x00F5CA, "OCum.esp") as armor
-	OCumSemen02 = outils.GetFormFromFile(0x00F5CB, "OCum.esp") as armor
-	OCumSemen_breasts01 = outils.GetFormFromFile(0x00F5CC, "OCum.esp") as armor
-	OCumSemen_breasts02 = outils.GetFormFromFile(0x00F5CD, "OCum.esp") as armor
-	OCumSemen_belly01 = outils.GetFormFromFile(0x00F5CE, "OCum.esp") as armor
-	OCumSemen_belly02 = outils.GetFormFromFile(0x00F5CF, "OCum.esp") as armor
-	OCumSemen_butt01 = outils.GetFormFromFile(0x00F5D0, "OCum.esp") as armor
-	OCumSemen_butt02 = outils.GetFormFromFile(0x00F5D1, "OCum.esp") as armor
-	OCumSemen_pussy01 = outils.GetFormFromFile(0x00F5D2, "OCum.esp") as armor
-
-	cumSound = outils.GetFormFromFile(0x00574D, "OCum.esp") as sound
-	squirtSound = outils.GetFormFromFile(0x007EF0, "OCum.esp") as sound
-	femaleGasp = outils.GetFormFromFile(0x007EF1, "OCum.esp") as sound
-
 	cummedOnActs = new actor[1]
 
 	squirtchance = 25
 
-	RegenMod = outils.GetFormFromFile(0x00CE25, "OCum.esp") as GlobalVariable
-	DisableInflation = outils.GetFormFromFile(0x00CE26, "OCum.esp") as GlobalVariable
-	DisableCumshot = outils.GetFormFromFile(0x00F5C0, "OCum.esp") as GlobalVariable
-
 	OnLoad()
-
 
 EndEvent
 
@@ -772,15 +733,22 @@ function CumOnto(actor act, string TexFilename, bool body = true)
 	else 
 		area = "Face"
 	endif
-	ReadyOverlay(act, ostim.AppearsFemale(act), area, GetCumTexture(TexFilename))
-	cummedOnActs = PapyrusUtil.PushActor(cummedonacts, act)
-	; todo add global to enable or disable cum meshes AND one for textures.
-	EquipCumMesh(act, area, TexFileName)
+
+	if !(DisableCumDecal.GetValueInt()) as bool
+		ReadyOverlay(act, ostim.AppearsFemale(act), area, GetCumTexture(TexFilename))
+		cummedOnActs = PapyrusUtil.PushActor(cummedonacts, act)
+	endif
+
+	if !(DisableCumMesh.GetValueInt()) as bool
+		EquipCumMesh(act, area, TexFileName)
+	endif
+
 	RegisterForSingleUpdateGameTime(1.66)
 endfunction
 
 Function EquipCumMesh(actor act, string area, string TexFileName)
 	; area is unused here for now, might use it in future so I included it.
+	; no facial mesh yet, but might be possible in future.
 	if     (TexFileName == "Oral1")
 		Equipper(act, OCumSemen_breasts01)
 	elseIf (TexFileName == "Oral1Alt")
@@ -812,6 +780,9 @@ function Equipper(actor act, armor item)
 	act.equipItem(item, true, true)
 	actorcache = PapyrusUtil.PushActor(actorcache, act)
 	formcache = PapyrusUtil.PushForm(formcache, item)
+	if act == playerRef
+		act.QueueNiNodeUpdate()
+	endif
 endfunction
 
 Event OstimEnd(string eventName, string strArg, float numArg, Form sender)
@@ -819,8 +790,10 @@ Event OstimEnd(string eventName, string strArg, float numArg, Form sender)
 endEvent
 
 function UnEquipper() ; remove all items in formcache from all actors in actorcache
-	console(actorcache[0])
-	console(actorcache.Length)
+	if actorcache.Length <= 0
+		return ;fast fail
+	endif
+
 	int x = 0
 	while x < actorcache.Length
 		int k = 0
